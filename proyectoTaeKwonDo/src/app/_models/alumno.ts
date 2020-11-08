@@ -24,8 +24,9 @@ export class Alumno{
         this.seguro_medico = seguro_medico;
         this.certificado_medico = certificado_medico;
         this.carta_responsiva = carta_responsiva;
-        this. actividad = actividad;
-        this. grado = grado;
+        this.actividad = actividad;
+        this.grado = grado;
         this.usuario = usuario;
     }
+
 }
