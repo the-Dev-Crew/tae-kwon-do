@@ -54,7 +54,6 @@ export class AlumnoComponent implements OnInit {
     )
     
     this.alumnos = [new Alumno(1, "Aries", "Becerra", " ", "algo", "1996-04-09", "000000000001", "9878967436574", "907867868768768", "TaeKwonDo", "Café", "BAries"), new Alumno(2, "Christian", "Tello", "Ruiz", "foto", "1996-09-20", "0000000002", "87364817364", "587294898475", "TaeKwonDo", "Amarillo", "ChrisTellox"), new Alumno(3, "Mauricio", "Apellido1", "Apellido2", "foto", "1996-05-03", "0000000003", "746578465874589", "4875874584708", "Tae Kwon Do", "Azul", "MauSinApellidos")];
-    //this.alumnos = [new Usuario(1, "alanMora", "12345", 1), new Usuario(2, "mari989", "980615", 2), new Usuario(3, "maxsteel95", "contrasena", 1)];
   }
 
   // Consultar un alumno
@@ -119,10 +118,5 @@ export class AlumnoComponent implements OnInit {
   openModalAlumno(){    
     this.alumnoForm.reset();    
     $("#alumnoModal").modal("show");  
-  }
-
-  openModalAlumnoDetalles(idAlumno: number){
-    this.getAlumno(idAlumno);
-    $("#alumnoModalDetalles").modal("show");
   }
 }

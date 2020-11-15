@@ -13,6 +13,7 @@ export class Alumno{
     actividad: string;
     grado: string;
     usuario: string;
+    
 
     constructor(id, nombre, a_paterno, a_materno, fotografia, fecha_nacimiento, seguro_medico, certificado_medico, carta_responsiva, actividad, grado, usuario){
         this.id = id;
