@@ -11,10 +11,8 @@
     <!--Header del recuadro Alumnos-->
     <div class="card-header contenido-tabla-header">
         <h3>Alumnos</h3>
-        <div class="boton">
-            <button style="float: right;" (click)="openModalAlumno()" type="button" class="btn btn-info btn-sm"> Agregar Alumno
-            </button>
-        </div>
+        <button style="float: right;" (click)="openModalAlumno()" type="button" class="btn btn-info btn-sm"> Agregar Alumno
+        </button>
     </div>
 
     <!--Body-->
@@ -62,7 +60,7 @@
                 <form [formGroup]="alumnoForm" (ngSubmit)="createAlumno()">
                     <!-- Input para el nombre del nuevo alumno-->
                     <div class="form-group">
-                        <label for="nombre">Nombre: </label>
+                        <label for="nombre">Nombre:&nbsp;</label>
                         <input type="text" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
                         <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
                             <div *ngIf="f.nombre.errors.required">El nombre del alumno es obligatorio</div>
@@ -71,7 +69,7 @@
 
                     <!-- Input para el apellido paterno del nuevo alumno-->
                     <div class="form-group">
-                        <label for="a_paterno">Apellido Paterno: </label>
+                        <label for="a_paterno">Apellido Paterno:&nbsp;</label>
                         <input type="text" formControlName="a_paterno" [ngClass]="{ 'is-invalid': submitted && f.a_paterno.errors }">
                         <div *ngIf="submitted && f.a_paterno.errors" class="invalid-feedback">
                             <div *ngIf="f.a_paterno.errors.required">El apellido paterno del alumno es obligatorio</div>
@@ -80,7 +78,7 @@
 
                     <!-- Input para el apellido materno del nuevo alumno-->
                     <div class="form-group">
-                        <label for="a_materno">Apellido Materno: </label>
+                        <label for="a_materno">Apellido Materno:&nbsp;</label>
                         <input type="text" formControlName="a_materno" [ngClass]="{ 'is-invalid': submitted && f.a_materno.errors }">
                         <div *ngIf="submitted && f.a_materno.errors" class="invalid-feedback">
                             <div *ngIf="f.a_materno.errors.required">El apellido materno del alumno es obligatorio</div>
@@ -89,7 +87,7 @@
 
                     <!-- Input para la fotografía del nuevo alumno-->
                     <div class="form-group">
-                        <label for="fotografia">Fotografía: </label>
+                        <label for="fotografia">Fotografía:&nbsp;</label>
                         <input type="file" formControlName="fotografia" [ngClass]="{ 'is-invalid': submitted && f.fotografia.errors }">
                         <div *ngIf="submitted && f.fotografia.errors" class="invalid-feedback">
                             <div *ngIf="f.fotografia.errors.required">La fotografía del alumno es obligatoria</div>
@@ -98,7 +96,7 @@
 
                     <!-- Input para la fecha de nacimiento del nuevo alumno-->
                     <div class="form-group">
-                        <label for="fecha_nacimiento">Fecha de nacimiento: </label>
+                        <label for="fecha_nacimiento">Fecha de nacimiento:&nbsp;</label>
                         <input type="date" formControlName="fecha_nacimiento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha_nacimiento.errors }" />
                         <div *ngIf="submitted && f.fecha_nacimiento.errors" class="invalid-feedback">
                             <div *ngIf="f.fecha_nacimiento.errors.required">La fecha de nacimiento del alumno es obligatoria</div>
@@ -107,7 +105,7 @@
 
                     <!-- Input para el seguro médico del nuevo alumno-->
                     <div class="form-group">
-                        <label for="seguro_medico">Seguro médico: </label>
+                        <label for="seguro_medico">Seguro médico:&nbsp;</label>
                         <input type="text" formControlName="seguro_medico" [ngClass]="{ 'is-invalid': submitted && f.seguro_medico.errors }">
                         <div *ngIf="submitted && f.seguro_medico.errors" class="invalid-feedback">
                             <div *ngIf="f.seguro_medico.errors.required">El seguro médico del alumno es obligatorio</div>
@@ -116,7 +114,7 @@
 
                     <!-- Input para el certificado médico del nuevo alumno-->
                     <div class="form-group">
-                        <label for="certificado_medico">Certificado médico: </label>
+                        <label for="certificado_medico">Certificado médico:&nbsp;</label>
                         <input type="file" formControlName="certificado_medico" [ngClass]="{ 'is-invalid': submitted && f.certificado_medico.errors }">
                         <div *ngIf="submitted && f.certificado_medico.errors" class="invalid-feedback">
                             <div *ngIf="f.certificado_medico.errors.required">El certificado médico del alumno es obligatorio</div>
@@ -125,7 +123,7 @@
 
                     <!-- Input para la carta responsiva del nuevo alumno-->
                     <div class="form-group">
-                        <label for="carta_responsiva">Carta responsiva: </label>
+                        <label for="carta_responsiva">Carta responsiva:&nbsp;</label>
                         <input type="file" formControlName="carta_responsiva" [ngClass]="{ 'is-invalid': submitted && f.carta_responsiva.errors }">
                         <div *ngIf="submitted && f.carta_responsiva.errors" class="invalid-feedback">
                             <div *ngIf="f.carta_responsiva.errors.required">La carta responsiva del alumno es obligatoria</div>
@@ -134,7 +132,7 @@
 
                     <!-- Input para la actividad del nuevo alumno-->
                     <div class="form-group">
-                        <label for="actividad">Actividad: </label>
+                        <label for="actividad">Actividad:&nbsp;</label>
                         <input type="text" formControlName="actividad" [ngClass]="{ 'is-invalid': submitted && f.actividad.errors }">
                         <div *ngIf="submitted && f.actividad.errors" class="invalid-feedback">
                             <div *ngIf="f.actividad.errors.required">La actividad del alumno es obligatoria</div>
@@ -143,7 +141,7 @@
 
                     <!-- Input para el grado de la actividad del nuevo alumno-->
                     <div class="form-group">
-                        <label for="grado">Grado: </label>
+                        <label for="grado">Grado:&nbsp;</label>
                         <input type="text" formControlName="grado" [ngClass]="{ 'is-invalid': submitted && f.grado.errors }">
                         <div *ngIf="submitted && f.grado.errors" class="invalid-feedback">
                             <div *ngIf="f.grado.errors.required">El grado de la actividad del alumno es obligatorio</div>
@@ -152,7 +150,7 @@
 
                     <!-- Input para la actividad del nuevo alumno-->
                     <div class="form-group">
-                        <label for="usuario">Usuario: </label>
+                        <label for="usuario">Usuario:&nbsp;</label>
                         <input type="text" formControlName="usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
                         <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
                             <div *ngIf="f.usuario.errors.required">El usuario del alumno es obligatoria</div>
@@ -162,7 +160,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <button class="btn btn-primary" data-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
