@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-const routes: Routes = [];
+import { TipoEventoComponent} from './components/tipo-evento/tipo-evento.component';
+const routes: Routes = [
+  {path: 'tipo_evento', component: TipoEventoComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
