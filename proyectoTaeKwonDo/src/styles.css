@@ -5061,7 +5061,6 @@
  
  .card {
    width: 70%;
-   margin-left: 2rem;
    position: relative;
    display: -webkit-box;
    display: -ms-flexbox;
@@ -5072,6 +5071,7 @@
            flex-direction: column;
    background-clip: border-box;
    border: 1px solid rgba(30, 102, 151, 1);
+   background-color: rgba(87, 149, 191, 0.7);
    border-radius: 0.5rem;
  }
  
@@ -11067,9 +11067,11 @@
   margin-left: 0;
   margin-bottom: 0;
   background-color: rgba(87, 149, 191, 0.7);
+  padding: 1rem;
  }
 
- /*Tabla Alumnos*/
+ /*Página Alumnos*/
+ 
  .tabla-alumnos {
   width: auto;
   overflow: scroll;
