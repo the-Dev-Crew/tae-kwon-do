@@ -86,7 +86,7 @@
  h1, h2, h3, h4, h5, h6 {
    margin-top: 0;
    margin-bottom: 0.5rem;
-   color: #b063c0;
+   color: #000000;
  }
  
  p {
@@ -2891,36 +2891,38 @@
  }
  
  .btn-info {
-   color: #fff;
-   background-color: #13C245;
-   border-color: #12B941;
+   height: 90%;
+   color: #ffffff;
+   background-color: #000000;
+   border-color: #000000;
+   align-items: center;
  }
  
  .btn-info:hover {
    color: #fff;
-   background-color: #0F6F0A;
-   border-color: #0F6F0A;
+   background-color: #4B4B4B;
+   border-color: #fff;
  }
  
  .btn-info:focus, .btn-info.focus {
    color: #fff;
-   background-color: #0F6F0A;
-   border-color: #0F6F0A;
-   -webkit-box-shadow: 0 0 0 0.2rem #0F6F0A;
-           box-shadow: 0 0 0 0.2rem #0F6F0A;
+   background-color: #4B4B4B;
+   border-color: #fff;
+   -webkit-box-shadow: 0 0 0 0.2rem #4B4B4B;
+           box-shadow: 0 0 0 0.2rem #4B4B4B;
  }
  
  .btn-info.disabled, .btn-info:disabled {
    color: #fff;
-   background-color: #6cc3d5;
-   border-color: #6cc3d5;
+   background-color: #989898;
+   border-color: #fff;
  }
  
  .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
  .show > .btn-info.dropdown-toggle {
    color: #fff;
-   background-color: #44b3ca;
-   border-color: #3aafc7;
+   background-color: #989898;
+   border-color: #fff;
  }
  
  .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
@@ -5069,9 +5071,9 @@
        -ms-flex-direction: column;
            flex-direction: column;
    word-wrap: break-word;
-   background-color: #303030;
+   background-color: #ffffff;
    background-clip: border-box;
-   border: 1px solid rgba(0, 0, 0, 0.125);
+   border: 1px solid rgba(30, 102, 151, 1);
    border-radius: 0.4rem;
  }
  
@@ -5135,7 +5137,6 @@
    padding: 0.75rem 1.25rem;
    margin-bottom: 0;
    background-color: #1E6697;
-   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
  }
  
  .card-header:first-child {
@@ -11060,19 +11061,38 @@
 
  /** PROPIOS **/
 
-::-webkit-scrollbar {
-  display: none;
-}
-
  /*Globales*/
-.contenido-tabla-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+ .container-global{
+  width: 100%;
+  margin-top: 0;
+  margin-right: auto;
+  margin-left: 0;
+  margin-bottom: 0;
+  background-color: rgba(87, 149, 191, 0.7);
+ }
 
-.tabla-alumnos {
+ /*Tabla Alumnos*/
+ .tabla-alumnos {
   width: auto;
   overflow: scroll;
 }
+
+.tabla-alumnos::-webkit-scrollbar {
+  display: none;
+}
+
+ .contenido-tabla-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: 'Goldman', cursive;
+}
+
+.contenido-tabla-header h3 {
+  font-family: 'Goldman', cursive;
+  font-size: 2.5rem;
+  color: #000000;
+}
+
 
