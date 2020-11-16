@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TipoEventoComponent,
   ],
   imports: [
     BrowserModule,
