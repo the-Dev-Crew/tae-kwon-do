@@ -22,21 +22,21 @@ export class TipoEventoComponent implements OnInit {
 
   ngOnInit(): void {
     //inicie el formulario vacio
-    /*this.tipoEventoForm = this.formBuilder.group([
+    this.tipoEventoForm = this.formBuilder.group({
       id: [''],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required]
-    ]);
-    this.editarTipoEventoForm =this.formBuilder.group([
+    });
+    this.editarTipoEventoForm =this.formBuilder.group({
       id: [''],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required]
-    ]);*/
-
+    });
+    this.getTipos_Evento();
   }
 
   getTipos_Evento(){
-    this.tiposEvento = [];
+    this.tiposEvento = [ new Tipo_Evento(1, "Bailongo", "bailongo de ciencias")];
     this.tipoEventoService.getTipos_Evento().subscribe(
       res => {
         this.tiposEvento = res;
@@ -76,10 +76,10 @@ export class TipoEventoComponent implements OnInit {
     let aux: Tipo_Evento = this.tipoEventoForm.value;
     console.log('Nuevo Tipo de Evento: '+ aux.nombre);
     console.log('Descripcion: ' + aux.descripcion);
-    //$("tipoEventoModal").modal("hide");
+    $("tipoEventoModal").modal("hide");
     this.tipoEventoService.createTipo_Evento(this.tipoEventoForm.value).subscribe(
       res => {
-        //$("tipoEventoModal").modal("hide");
+        $("tipoEventoModal").modal("hide");
         this.getTipos_Evento();
       },
       err => console.error(err)
@@ -97,11 +97,11 @@ export class TipoEventoComponent implements OnInit {
     let aux: Tipo_Evento = this.editarTipoEventoForm.value;
     console.log('Nombre del evento: ' + aux.nombre);
     console.log('Descripcion del evento: ' + aux.descripcion);
-    //$("#editarTipoEventoModal").modal("hide");
+    $("#editarTipoEventoModal").modal("hide");
 
     this.tipoEventoService.updateTipo_Evento(this.editarTipoEventoForm.value).subscribe(
       res => {
-        //$("#editarTipoEventoModal").modal("hide");
+        $("#editarTipoEventoModal").modal("hide");
         this.getTipos_Evento();
       },
       err => console.error(err)
@@ -117,7 +117,7 @@ export class TipoEventoComponent implements OnInit {
     $("#tipoEventoModal").modal("show");
   }
 
-  /*
+
   openModalEditarTipoEvento(tipoEvento){
     this.editarTipoEventoForm.reset();
     this.editarTipoEventoForm.setValue({
@@ -126,6 +126,6 @@ export class TipoEventoComponent implements OnInit {
       descripcion: [tipoEvento.descripcion],
     });
     $("#editarTipoUsuarioModal").modal("show");
-  }*/
+  }
 
 }

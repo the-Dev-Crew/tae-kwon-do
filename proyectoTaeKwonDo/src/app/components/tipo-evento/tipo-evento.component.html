@@ -1,1 +1,82 @@
-<p>tipo-evento works!</p>
+<div class="container-fluid">
+    <div class="card mb-3">
+        <!-- Header  -->
+        <div class="card-header">
+            <h3>&nbsp;&nbsp;Tipos de Evento Existentes</h3>
+            <button style="float: right;" (click)="openModalTipoEvento()" type="button" class="btn btn-info btn-sm"> Registrar
+            </button>
+        </div>
+    
+
+    <!-- Body  -->
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">id</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Descripción</th>
+                    <th></th>
+             </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tipoevento of tiposEvento">
+                    <td class="text-center">{{ tipoevento.id }}</td>
+                    <td class="text-center">{{ tipoevento.nombre }}</td>
+                    <td class="text-center">{{ tipoevento.descripcion }}</td>
+
+                    <td>
+                        <div>
+                            <button (click)="updateTipoEvento(tipoevento)" type="button">Editar </button>
+                            &nbsp;&nbsp;
+                            <button (click)="deleteTipoEvento(tipoevento.id)" type="button">Eliminar </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br><br>
+
+<div class="modal" id="tipoEventoModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Registrar tipo de Evento</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="tipoEventoForm" (ngSubmit)="createTipo_Evento()">
+                    <div class="form-group">
+                        <label for="nombre">Nombre*<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" >
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">El nombre del tipo de evento es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcion">Descripción*</label>
+                        <textarea rows="3" formControlName="descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }"></textarea>
+                        <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+                          <div *ngIf="f.descripcion.errors.required">La descripcion del evento es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
