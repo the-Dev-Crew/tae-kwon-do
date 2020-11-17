@@ -2723,7 +2723,6 @@
  .btn {
    display: inline-block;
    font-weight: 400;
-   color: #888;
    text-align: center;
    vertical-align: middle;
    -webkit-user-select: none;
@@ -2750,7 +2749,6 @@
  }
  
  .btn:hover {
-   color: #888;
    text-decoration: none;
  }
  
@@ -2892,20 +2890,19 @@
  
  .btn-info {
    height: 90%;
-   color: #ffffff;
-   background-color: #000000;
-   border-color: #000000;
-   align-items: center;
+   color: #fff;
+   background-color: #000;
+   border-color: #000;
  }
  
  .btn-info:hover {
-   color: #fff;
+   color: #000000;
    background-color: #4B4B4B;
-   border-color: #fff;
+   border-color: #4B4B4B;
  }
  
  .btn-info:focus, .btn-info.focus {
-   color: #fff;
+   color: #000000;
    background-color: #4B4B4B;
    border-color: #fff;
    -webkit-box-shadow: 0 0 0 0.2rem #4B4B4B;
@@ -2913,14 +2910,14 @@
  }
  
  .btn-info.disabled, .btn-info:disabled {
-   color: #fff;
+   color: #000000;
    background-color: #989898;
    border-color: #fff;
  }
  
  .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
  .show > .btn-info.dropdown-toggle {
-   color: #fff;
+   color: #000000;
    background-color: #989898;
    border-color: #fff;
  }
@@ -5133,7 +5130,7 @@
  .card-header {
    padding: 0.75rem 1.25rem;
    margin-bottom: 0;
-   background-color: #1E6697;
+   background-color: #000B5A;
  }
  
  .card-header:first-child {
@@ -6425,7 +6422,7 @@
    pointer-events: auto;
    background-color: #ffffff;
    background-clip: padding-box;
-   border: 1px solid rgba(87, 149, 191, 0.7);
+   /*border: 1px solid rgba(87, 149, 191, 0.7);*/
    border-radius: 0.6rem;
    outline: 0;
  }
@@ -6459,10 +6456,10 @@
        -ms-flex-pack: justify;
            justify-content: space-between;
    padding: 1rem 1rem;
-   border-bottom: 1px solid #eceeef;
+   border-bottom: 1px solid #000B5A;
    border-top-left-radius: calc(0.6rem - 1px);
    border-top-right-radius: calc(0.6rem - 1px);
-   background-color: #1E6697;
+   background-color: #000B5A;
  }
  
  .modal-header .close {
@@ -6474,6 +6471,7 @@
    margin-bottom: 0;
    line-height: 1.5;
    font-family: 'Goldman', cursive;
+   color: #ffffff;
  }
  
  .modal-body {
@@ -11059,19 +11057,66 @@
 
  /** PROPIOS **/
 
- /*Globales*/
+  /*Globales*/
  .container-global{
   width: 100%;
   margin-top: 0;
   margin-right: auto;
   margin-left: 0;
   margin-bottom: 0;
-  background-color: rgba(87, 149, 191, 0.7);
+  background-color: #fff;
   padding: 1rem;
  }
 
+ /*Navegador*/
+ .contenedor-nav {
+  background-color: #000B5A;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 0px 0px;
+ }
+ .contenedor-nav h3{
+  color: #fff;
+  font-family: 'Goldman', cursive;
+  margin: 0px 0px 0px;
+ }
+
+ .barra {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+ }
+
+ .navegador{
+  font-family: 'Goldman', cursive;
+ }
+
+ .navegador a{
+  text-decoration: none;
+  margin-right: 1rem;
+  color: #ffffff;
+  font-size: 1rem;
+ }
+
+ .navegador a:last-of-type{
+  margin-right: 0;
+ }
+
+/*Footer*/
+.contenedor-footer {
+  background-color: #000000;
+  padding: 1rem 1rem;
+  margin: 0px 0px;
+  }
+
+.contenedor-footer p {
+  color: #ffffff;
+  font-size: .8rem;
+  margin-bottom: 0px;
+}
+
  /*Página Alumnos*/
- 
  .tabla-alumnos {
   width: auto;
   overflow: scroll;
@@ -11092,7 +11137,7 @@
 .contenido-tabla-header h3 {
   font-family: 'Goldman', cursive;
   font-size: 2.5rem;
-  color: #000000;
+  color: #fff;
 }
 
 
