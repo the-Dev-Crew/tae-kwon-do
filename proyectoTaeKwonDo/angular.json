@@ -122,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "proyectoTaeKwonDo"
+    }
+  },
+  "defaultProject": "proyectoTaeKwonDo",
+  "cli": {
+    "analytics": "5cf810e6-9198-4eeb-8dcb-4b84607f78c1"
+  }
 }
