@@ -5,11 +5,11 @@ export class Alumno{
     nombre: string;
     a_paterno: string;
     a_materno: string;
-    fotografia: Blob;
+    fotografia: string;
     fecha_nacimiento: Date;
     seguro_medico: string;
-    certificado_medico: Blob;
-    carta_responsiva: Blob;
+    certificado_medico: string;
+    carta_responsiva: string;
     actividad: string;
     grado: string;
     usuario: string;

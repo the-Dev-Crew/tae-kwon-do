@@ -16,6 +16,7 @@ export class AlumnoComponent implements OnInit {
 
   alumnos: Alumno[] | any;
   alumno: Alumno | any;
+  alumnoDetalles: Alumno | any;
   alumnoForm: FormGroup;
   submitted = false;
 
@@ -58,7 +59,7 @@ export class AlumnoComponent implements OnInit {
 
   // Consultar un alumno
   getAlumno(id){
-    this.alumno = null;
+    this.alumnoForm = null;
     this.alumnoService.getAlumno(id).subscribe(
       res => {
         this.alumno = res;
