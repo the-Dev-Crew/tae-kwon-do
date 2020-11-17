@@ -5132,6 +5132,12 @@
    margin-bottom: 0;
    background-color: #000B5A;
  }
+
+ .card-header h3{
+  font-family: 'Goldman', cursive;
+  font-size: 2.5rem;
+  color: #fff;
+ }
  
  .card-header:first-child {
    border-radius: calc(0.4rem - 1px) calc(0.4rem - 1px) 0 0;
@@ -11052,7 +11058,7 @@
  .list-group-item h4,
  .list-group-item h5,
  .list-group-item h6 {
-   color: #13C245;
+   color: #ffffff;
  }
 
  /** PROPIOS **/
@@ -11118,12 +11124,12 @@
 }
 
  /*Página Alumnos*/
- .tabla-alumnos {
+ .nuestra-tabla {
   width: auto;
   overflow: scroll;
 }
 
-.tabla-alumnos::-webkit-scrollbar {
+.nuestra-tabla::-webkit-scrollbar {
   display: none;
 }
 
