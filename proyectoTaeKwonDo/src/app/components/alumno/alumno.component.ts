@@ -59,14 +59,16 @@ export class AlumnoComponent implements OnInit {
 
   // Consultar un alumno
   getAlumno(id){
-    this.alumnoForm = null;
+    this.alumnoDetalles = null;
     this.alumnoService.getAlumno(id).subscribe(
       res => {
-        this.alumno = res;
+        this.alumnoDetalles = res;
       },
       err => console.error(err)
     )
   }
+
+  
 
   // Eliminar un alumno
   deleteAlumno(id){
@@ -119,5 +121,11 @@ export class AlumnoComponent implements OnInit {
   openModalAlumno(){    
     this.alumnoForm.reset();    
     $("#alumnoModal").modal("show");  
+  }
+
+  //Ventana para ver un alumno.
+  openModalVerAlumno(id){
+    this.getAlumno(id);
+    $("#verAlumnoModal").modal("show");
   }
 }
