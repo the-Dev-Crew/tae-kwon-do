@@ -2,10 +2,11 @@
 --Llave primaria username. No puede haber NULL en ninguno de los
 --atributos.
 CREATE TABLE `usuario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(45) NOT NULL,
   `tipo_usuario` varchar(45) NOT NULL,
-  PRIMARY KEY (`username`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 --Tabla para alumno, llave primaria id_alumno autoincrementable,
@@ -23,9 +24,7 @@ CREATE TABLE `alumno` (
   `actividad` varchar(45) NOT NULL,
   `grado` varchar(45) NOT NULL,
   `username` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id_Alumno`),
-  KEY `alumnofk1_idx` (`username`),
-  CONSTRAINT `alumnofk1` FOREIGN KEY (`username`) REFERENCES `usuario` (`username`) ON DELETE SET NULL ON UPDATE CASCADE
+  PRIMARY KEY (`id_Alumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 --Tabla para evento, llave primaria id_evento autoincrementable,
