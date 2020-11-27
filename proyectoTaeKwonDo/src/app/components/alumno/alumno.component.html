@@ -175,7 +175,25 @@
             </div>
 
             <div class="modal-body">
-                <p>Debería haber detalles del alumno aquí</p>
+                <div class="caja-flex-horizontal" *ngIf="alumnoDetalles">
+                    <div class="alumno-detalles-datos">
+                        <p>Nombre completo: {{ alumnoDetalles.nombre }}&nbsp;{{ alumnoDetalles.a_paterno }}&nbsp;{{ alumnoDetalles.a_materno }}</p>
+                        <p>Fecha de nacimiento: {{ alumnoDetalles.fecha_nacimiento }}</p>
+                        <p>Clave del Seguro Médico: {{ alumnoDetalles.seguro_medico }}</p>
+                        <p>Actividad: {{ alumnoDetalles.actividad }}</p>
+                        <p>Grado/Listón: {{ alumnoDetalles.grado }}</p>
+                        <p>Usuario: {{ alumnoDetalles.usuario }}</p>
+                        <a href="assets/pdf/TDI-CodigosHTTP.pdf" target="blank">Certificado Médico</a>
+                        <br><br>
+                        <a href="assets/pdf/TDI-JPA-pdf" target="blank">Carta Responsiva</a>
+                    </div>
+
+                    <div class="alumno-detalles-documentos caja-flex-vertical">
+                        <img src="assets/img/karate.jpg">
+                        <button>Modificar Alumno</button>
+                        <button>Eliminar Alumno</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
