@@ -1,41 +1,38 @@
-<div class="container-fluid">
-    <div class="card mb-3">
-        <!-- Header  -->
-        <div class="card-header">
-            <h3>&nbsp;&nbsp;Tipos de Evento Existentes</h3>
-            <button style="float: right;" (click)="openModalTipoEvento()" type="button" class="btn btn-info btn-sm"> Registrar
-            </button>
-        </div>
+<div class="card">
+    <!-- Header  -->
+    <div class="card-header contenido-tabla-header">
+        <h3>&nbsp;&nbsp;Tipos de Evento Existentes</h3>
+        <button style="float: right;" (click)="openModalTipoEvento()" type="button" class="btn btn-info btn-sm"> Registrar
+        </button>
+    </div>
     
 
     <!-- Body  -->
-    <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="text-center">id</th>
-                    <th class="text-center">Nombre</th>
-                    <th class="text-center">Descripción</th>
-                    <th></th>
-             </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let tipoevento of tiposEvento">
-                    <td class="text-center">{{ tipoevento.id }}</td>
-                    <td class="text-center">{{ tipoevento.nombre }}</td>
-                    <td class="text-center">{{ tipoevento.descripcion }}</td>
+    <table class="table nuestra-tabla">
+        <thead>
+            <tr>
+                <th class="text-center">id</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Descripción</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tipoevento of tiposEvento">
+                <td class="text-center">{{ tipoevento.id }}</td>
+                <td class="text-center">{{ tipoevento.nombre }}</td>
+                <td class="text-center">{{ tipoevento.descripcion }}</td>
 
-                    <td>
-                        <div>
-                            <button (click)="updateTipoEvento(tipoevento)" type="button">Editar </button>
-                            &nbsp;&nbsp;
-                            <button (click)="deleteTipoEvento(tipoevento.id)" type="button">Eliminar </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                <td>
+                    <div>
+                        <button (click)="updateTipoEvento(tipoevento)" type="button">Editar </button>
+                        &nbsp;&nbsp;
+                        <button (click)="deleteTipoEvento(tipoevento.id)" type="button">Eliminar </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <br><br>

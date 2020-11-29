@@ -1,10 +1,12 @@
 package com.taekwondo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,25 +36,50 @@ public class UsuarioCtrl {
 	}
 	
 	
-	@GetMapping("/usuario/{id}")
-	public ResponseEntity<Object> getUsuario(@PathVariable int id){
-		return usuarioService.getUsuario(id);
+	@GetMapping("/usuario/{username}")
+	public ResponseEntity<Object> getUsuario(@PathVariable String username){
+		Usuario user = usuarioService.getUsuario(username);
+		
+		HashMap<String,String> response = new HashMap<>();
+		
+		if(user.getTipo_usuario().equals("BAJA")) {
+			response.put("status","failure");
+			response.put("message","El usuario que se desea consultar ha sido dado de baja");
+			return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Object>(user, HttpStatus.OK);
 	}
 	
 	@PostMapping("/usuario")
 	public ResponseEntity<Object> createUsuario(@Valid @RequestBody Usuario usuario){
 		ResponseEntity<Object> savedUsuario = usuarioService.createUsuario(usuario);
 		
-		return null;
+		return savedUsuario;
 	}
 	
-	@PutMapping("/usuario/{id}")
-	public void updateUsuario(@Valid @RequestBody Usuario usuario, @PathVariable int id) {
-		usuarioService.updateUsuario(id, usuario);
+	@PutMapping("/usuario/{username}")
+	public ResponseEntity<Object> updateUsuario(@Valid @RequestBody Usuario usuario, @PathVariable String username) {
+		HashMap<String,String> response = new HashMap<>();
+		
+		if(!usuario.getUsuario().equals(username)) {
+			response.put("status","failure");
+			response.put("message","El nombre de usuario no coincide");
+			return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+		}
+		usuarioService.updateUsuario(username, usuario);
+		
+		response.put("status","success");
+		response.put("message","Usuario actualizado exitosamente");
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/usuario/{id}")
-	public void deleteUsuario(@PathVariable int id) {
-		usuarioService.deleteUsuario(id);
+	@DeleteMapping("/usuario/{username}")
+	public ResponseEntity<Object> deleteUsuario(@PathVariable String username) {
+		usuarioService.deleteUsuario(username);
+		
+		HashMap<String,String> response = new HashMap<>();
+		response.put("status","success");
+		response.put("message","Tweet eliminado exitosamente");
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 }

@@ -17,22 +17,24 @@ public class UsuarioServiceImp implements UsuarioService{
 	private UsuarioRepository repoUsuario;
 	
 	public List<Usuario> getUsuarios(){
-		return repoUsuario.findAll();
+		return repoUsuario.getUsuarios();
 	}
 	
-	public ResponseEntity<Object> getUsuario(int id){
-		return new ResponseEntity<>(repoUsuario.findById(id), HttpStatus.OK);
+	public Usuario getUsuario(String username){
+		return repoUsuario.getUsuario(username);
 	}
 	
 	public ResponseEntity<Object> createUsuario(Usuario usuario){
 		return new ResponseEntity<>(repoUsuario.save(usuario), HttpStatus.OK);
 	}
 	
-	public void updateUsuario(int id, Usuario usuario) {
+	public void updateUsuario(String username, Usuario usuario) {
 		repoUsuario.save(usuario);
 	}
 	
-	public void deleteUsuario(int id) {
-		repoUsuario.deleteById(id);
+	public void deleteUsuario(String username) {
+		Usuario user = repoUsuario.getUsuario(username);
+		user.setTipo_usuario("BAJA");
+		repoUsuario.save(user);
 	}
 }

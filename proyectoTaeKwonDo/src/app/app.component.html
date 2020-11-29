@@ -1,3 +1,25 @@
-<p>Hello World</p>
+<header class="contenedor-nav">
+    <div class="barra">
+        <a href="/">
+        <h3>CLUB LEONES</h3>
+        </a>
 
-<router-outlet></router-outlet>
+        <nav class="navegador">
+            <a href="/alumno">Alumnos</a>
+            <a href="/evento">Evento</a>
+            <a href="/examen">Examenes</a>
+            <a href="OTRA COSA POR SI LAS DUDAS">Lo que falte xD</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container-global">
+    <router-outlet></router-outlet>
+</div>
+
+<footer class="contenedor-footer">
+    <div class="barra">
+        <p><i class="far fa-copyright"></i>&nbsp;2020. Derechos reservados.</p>
+        <p>Desarrollado por Dev-Crew&nbsp;<i class="fas fa-laptop-code"></i></p>
+    </div>
+</footer>

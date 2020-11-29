@@ -8,8 +8,8 @@ import com.taekwondo.model.Usuario;
 
 public interface UsuarioService {
 	public abstract List<Usuario> getUsuarios();
-	public abstract ResponseEntity<Object> getUsuario(int id);
+	public abstract Usuario getUsuario(String username);
 	public abstract ResponseEntity<Object> createUsuario(Usuario usuario);
-	public abstract void updateUsuario(int id, Usuario usuario);
-	public abstract void deleteUsuario(int id);
+	public abstract void updateUsuario(String username, Usuario usuario);
+	public abstract void deleteUsuario(String username);
 }

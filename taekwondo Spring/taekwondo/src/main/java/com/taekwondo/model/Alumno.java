@@ -6,6 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -16,9 +21,11 @@ public class Alumno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_Alumno;
 	
+	@NotNull
 	@Size(min=2, message="El nombre de la persona debe tener al menos 2 letras")
 	private String nombre;
 	
+	@NotNull
 	@Size(min=2, message="El apellido Paterno de la persona deben tener al menos 2 letras")
 	private String a_paterno;
 	
@@ -41,6 +48,8 @@ public class Alumno {
 	
 	private String grado;
 	
+	@NotNull
+	@Column(unique=true)
 	private String username;
 	
 	public Alumno() {}

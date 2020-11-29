@@ -11,9 +11,6 @@ import javax.validation.constraints.Size;
 public class Usuario {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
 	@Size(min=2, message="El usuario debe tener al menos 2 caracteres")
 	private String username;
 	
@@ -26,22 +23,14 @@ public class Usuario {
 		
 	}
 
-	public Usuario(Integer id, @Size(min = 2, message = "El usuario debe tener al menos 2 caracteres") String usuario,
+	public Usuario( @Size(min = 2, message = "El usuario debe tener al menos 2 caracteres") String usuario,
 			@Size(min = 2, message = "El password debe tener al menos 8 caracteres") String password,
 			String tipo_usuaro) {
 		super();
-		this.id = id;
+
 		this.username = usuario;
 		this.password = password;
 		this.tipo_usuario = tipo_usuaro;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getUsuario() {
@@ -70,7 +59,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", usuario=" + username + ", password=" + password + ", tipo_usuaro=" + tipo_usuario
+		return "Usuario [ usuario=" + username + ", password=" + password + ", tipo_usuaro=" + tipo_usuario
 				+ "]";
 	}
 

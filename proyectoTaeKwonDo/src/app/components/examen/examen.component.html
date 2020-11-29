@@ -1,0 +1,144 @@
+<!--Head-->
+<head>
+    <title>Examenes</title>
+</head>
+
+<!--Tabla de Examenes-->
+<div class="card">
+    <!--Header del recuadro Eventos-->
+    <div class="card-header contenido-tabla-header">
+        <h3>Examenes</h3>
+        <button style="float: right;" (click)="openModalExamen()" type="button" class="btn btn-info btn-sm"> Agregar Examen </button>
+    </div>
+
+    <!--Body-->
+    <div class="table nuestra-tabla">
+        <!--Tabla que muestra todos los examenes registrados en el sistema-->
+        <table>
+            <thead class="theader">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Costo</th>
+                    <th>Fecha</th>
+                    <th>Actividad</th>
+                    <th>Grado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let examen of examenes">
+                    <td>{{ examen.nombre }}</td>
+                    <td>{{ examen.costo }}</td>
+                    <td>{{ examen.fecha }}</td>
+                    <td>{{ examen.actividad }}</td>
+                    <td>{{ examen.grado }}</td>
+                    <td><button (click)="openModalVerExamen(examen.id_examen)">Detalles</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br><br>
+
+<div class="modal" id="examenModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title">Nuevo Examen</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <form [formGroup]="examenForm" (ngSubmit)="createExamen()">
+                
+                    <!--Input para el nombre del examen-->
+                    <div class="form-group">
+                        <label for="nombre">Nombre:&nbsp;</label>
+                        <input type="text" formControlName="nombre"
+                        [ngClass]="{ 'is-invalid':submitted && f.nombre.errors}">
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">El nombre del examen es obligatorio
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Input para el costo del examen-->
+                    <div class="form-group">
+                        <label for="costo">Costo de aplicación: &nbsp;</label>
+                        <input type="number" min="0" formControlName="costo" [ngClass]="{'is.invalid': submitted && f.costo.errors}">
+                        <div *ngIf="submitted && f.costo.errors" class="invalid-feedback">
+                            <div *ngIf="f.costo.errors.required">El costo de aplicación al examen es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <!--Input para el tipo de examen-->
+                    <div class="form-group">
+                        <label for="tipo">Tipo:&nbsp;</label>
+                        <input type="text" formControlName="tipo"
+                        [ngClass]="{ 'is-invalid':submitted && f.tipo.errors}">
+                        <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
+                            <div *ngIf="f.tipo.errors.required">El tipo del examen es obligatorio
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Input para la fecha de aplicación del examen-->
+                    <div class="form-group">
+                        <label for="fecha">Fecha de aplicación:&nbsp;</label>
+                        <input type="date" formControlName="fecha" class="form-control" [ngClass]="{ 'is-invalid':submitted && f.fecha.errors}">
+                        <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+                            <div *ngIf="f.fecha.errors.required">La fecha de aplicación del examen es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <!-- Input para la actividad a la que pertenece el examen-->
+                    <div class="form-group">
+                        <label for="actividad">Actividad:&nbsp;</label>
+                        <input type="text" formControlName="actividad" [ngClass]="{ 'is-invalid': submitted && f.actividad.errors }">
+                        <div *ngIf="submitted && f.actividad.errors" class="invalid-feedback">
+                            <div *ngIf="f.actividad.errors.required">La actividad a la que pertenece el examen es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <!-- Input para el grado que está calificando el examen-->
+                    <div class="form-group">
+                        <label for="grado">Grado:&nbsp;</label>
+                        <input type="text" formControlName="grado" [ngClass]="{ 'is-invalid': submitted && f.grado.errors }">
+                        <div *ngIf="submitted && f.grado.errors" class="invalid-feedback">
+                            <div *ngIf="f.grado.errors.required">El grado que califica el examen es obligatorio</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal para ver un evento-->
+<div class="modal" id="verExamenModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title"> Detalles del Examen</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!--Body del modal-->
+            <div class="modal-body">
+                <div *ngIf="examenDetalles">
+                    <p>Nombre del examen:&nbsp;{{ examenDetalles.nombre }}</p>
+                    <p>Costo por aplicación:&nbsp;{{ examenDetalles.costo }}</p>
+                    <p>Tipo de examen:&nbsp;{{ examenDetalles.tipo }}</p>
+                    <p>Fecha de aplicación:&nbsp;{{ examenDetalles.fecha }}</p>
+                    <p>Actividad a la que pertenece el examen:&nbsp;{{ examenDetalles.actividad }}</p>
+                    <p>Grado que califica:&nbsp;{{ examenDetalles.grado }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

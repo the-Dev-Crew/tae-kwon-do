@@ -18,6 +18,7 @@ export class TipoEventoComponent implements OnInit {
   tipoEventoForm: FormGroup;
   editarTipoEventoForm: FormGroup;
   submitted = false;
+  
   constructor(private tipoEventoService: TipoEventoService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
