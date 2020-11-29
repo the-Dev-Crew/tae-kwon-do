@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { AlumnoComponent } from './components/alumno/alumno.component';
 import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
 import { EventoComponent } from './components/evento/evento.component';
+import { ExamenComponent } from './components/examen/examen.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     AlumnoComponent,
     TipoEventoComponent,
     EventoComponent,
+    ExamenComponent,
   ],
   imports: [
     BrowserModule,

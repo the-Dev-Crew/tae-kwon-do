@@ -45,7 +45,7 @@ export class EventoComponent implements OnInit {
       descripcion: ['', Validators.requiredTrue],
       //NOS FALTA VER QUE ONDA CON SU RESPECTIVA LISTA DE TIPO_EVENTO
       tipo_evento: ['', Validators.required]
-    })
+    });
     this.getEventos();
   }
 
