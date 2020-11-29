@@ -41,6 +41,7 @@
 
 <br><br>
 
+<!--Modal para agregar un evento-->
 <div class="modal" id="eventoModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -109,6 +110,31 @@
             <!--Footer que contiene el botón de guardar-->
             <div class="modal-footer">
                 <button class="btn btn-primary" data-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal para ver un evento-->
+<div class="modal" id="verEventoModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title"> Detalles del Evento</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!--Body del modal-->
+            <div class="modal-body">
+                <div *ngIf="eventoDetalles">
+                    <p>Nombre del evento:&nbsp;{{ eventoDetalles.nombre }}</p>
+                    <p>Fecha de inicio/inauguración del evento:&nbsp;{{ eventoDetalles.fecha_inicio }}</p>
+                    <p>Fecha de fin/clausura del evento:&nbsp;</p>
+                    <p>Costo por entrada:&nbsp;${{ eventoDetalles.costo }}</p>
+                    <p>Descripción:&nbsp;{{ eventoDetalles.descripcion }}</p>
+                </div>
             </div>
         </div>
     </div>
