@@ -18,6 +18,7 @@ export class AlumnoComponent implements OnInit {
   alumno: Alumno | any;
   alumnoDetalles: Alumno | any;
   alumnoForm: FormGroup;
+  editarAlumnoForm: FormGroup;
   submitted = false;
 
   constructor(private alumnoService: AlumnoService, private formBuilder: FormBuilder) { }
@@ -39,6 +40,8 @@ export class AlumnoComponent implements OnInit {
       usuario: ['', Validators.required]
     });
 
+
+
     //Consulta lista de alumnos.
     this.getAlumnos();
   }
@@ -59,16 +62,14 @@ export class AlumnoComponent implements OnInit {
 
   // Consultar un alumno
   getAlumno(id){
-    this.alumnoDetalles = null;
+    this.alumno = null;
     this.alumnoService.getAlumno(id).subscribe(
       res => {
-        this.alumnoDetalles = res;
+        this.alumno = res;
       },
       err => console.error(err)
     )
   }
-
-  
 
   // Eliminar un alumno
   deleteAlumno(id){
@@ -85,7 +86,7 @@ export class AlumnoComponent implements OnInit {
     this.submitted = true;
 
     if(this.alumnoForm.invalid){
-      console.log('Formulario inválido');
+      console.log('Formulario inválido')
       return;
     }
 
@@ -102,12 +103,12 @@ export class AlumnoComponent implements OnInit {
   updateAlumno(){
     this.submitted = true;
 
-    if(this.alumnoForm.invalid){
+    if(this.editarAlumnoForm.invalid){
       console.log('Formulario inválido');
       return;
     }
 
-    this.alumnoService.updateAlumno(this.alumnoForm.value).subscribe(
+    this.alumnoService.updateAlumno(this.editarAlumnoForm.value).subscribe(
       res => {
         this.getAlumnos();
       },

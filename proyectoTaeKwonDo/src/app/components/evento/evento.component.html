@@ -1,0 +1,88 @@
+<!--Head-->
+<head>
+    <title>Eventos</title>
+</head>
+
+<!--Tabla de Eventos-->
+<div class="card">
+    <!--Header del recuadro Eventos-->
+    <div class="card-header contenido-tabla-header">
+        <h3>Eventos</h3>
+        <button style="float: right;" (click)="openModalEvento()" type="button" class="btn btn-info btn-sm"> Agregar Evento </button>
+    </div>
+
+    <!--Body-->
+    <div class="table nuestra-tabla">
+        <!--Tabla que muestra todos los eventos registrados en el sistema-->
+        <table>
+            <thead class="thead">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Costo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let evento of eventos">
+                    <td hidden>{{ evento.id_evento }}</td>
+                    <td>{{ evento.nombre }}</td>
+                    <td>Inicia el {{ evento.fecha_inicio }} y termina el {{ evento.fecha_fin }}</td>
+                    <td>{{ evento.costo }}</td>
+                    <td><button (click)="openModalVerEvento(evento.id_evento)">Detalles</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br><br>
+
+<div class="modal" id="eventoModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Header de Modal para agregar evento-->
+            <div class="modal-header">
+                <h4 class="modal-title">Nuevo Evento</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!--Cuerpo del modal para agregar evento-->
+            <div class="modal-body">
+                <form [formGroup]="eventoForm" (ngSubmit)="createEvento()">
+
+                    <!--Input para el nombre del evento-->
+                    <div class="form-group">
+                        <label for="nombre">Nombre:&nbsp;</label>
+                        <input type="text" formControlName="nombre"
+                        [ngClass]="{ 'is-invalid':submitted && f.nombre.errors}">
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">El nombre del evento es obligatorio
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Input para la fecha de inici del evento-->
+                    <div class="form-group">
+                        <label for="fecha_inicio">Fecha de inicio/inauguración:&nbsp;</label>
+                        <input type="date" formControlName="fecha_inicio" class="form-control" [ngClass]="{ 'is-invalid':submitted && f.fecha_inicio.errors}">
+                        <div *ngIf="submitted && f.fecha_inicio.errors" class="invalid-feedback">
+                            <div *ngIf="f.fecha_inicio.errors.required">La fecha de inicio del evento es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <!--Input para la fecha de finalización del evento-->
+                    <div class="form-group">
+                        <label for="fecha_fin">Fecha de fin/clausura:&nbsp;</label>
+                        <input type="date" formControlName="fecha_fin" class="form-control" [ngClass]="{ 'is-invalid':submitted && f.fecha_fin.errors}">
+                        <div *ngIf="submitted && f.fecha_fin.errors" class="invalid-feedback">
+                            <div *ngIf="f.fecha_fin.errors.required">La fecha de finalización del evento es obligatoria</div>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
