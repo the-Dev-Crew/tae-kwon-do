@@ -19,7 +19,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Fecha</th>
-                    <th>Costo</th>
+                    <th>Costo por entrada</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +34,10 @@
         </table>
     </div>
 </div>
+
+<br><br>
+
+<a href="/tipo_evento">>>Ir a Tipos de eventos</a>
 
 <br><br>
 
@@ -80,8 +84,31 @@
                         </div>
                     </div>
 
+                    <!--Input para el costo de la entrada al evento-->
+                    <div class="form-group">
+                        <label for="costo">Costo por entrada: &nbsp;</label>
+                        <input type="number" min="0" formControlName="costo" [ngClass]="{'is.invalid': submitted && f.costo.errors}">
+                        <div *ngIf="submitted && f.costo.errors" class="invalid-feedback">
+                            <div *ngIf="f.costo.errors.required">El costo de entrada al evento es obligatorio</div>
+                        </div>
+                    </div>
 
+                    <!--Input para la descripción del evento-->
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea rows="3" formControlName="descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }"></textarea>
+                        <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+                          <div *ngIf="f.descripcion.errors.required">La descripcion del evento es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <p>FALTA VER LO DE TIPO DE EVENTO</p>
                 </form>
+            </div>
+
+            <!--Footer que contiene el botón de guardar-->
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>

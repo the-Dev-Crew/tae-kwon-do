@@ -11087,6 +11087,14 @@
   align-items: center;
  }
 
+ a{
+  color: #000000;
+ }
+
+ a:hover{
+  color: #000B5A;
+ }
+
  /*Navegador*/
  .contenedor-nav {
   background-color: #000B5A;
