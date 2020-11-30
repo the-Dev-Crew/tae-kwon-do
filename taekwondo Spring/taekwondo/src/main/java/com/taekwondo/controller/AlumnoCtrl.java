@@ -29,8 +29,6 @@ public class AlumnoCtrl {
 	@Autowired
 	private AlumnoService alumnoService;
 	
-	@Autowired
-	private AlumnoRepository alumnoRepo;
 	
 	@GetMapping("/alumno")
 	public List<Alumno> getAlumnos(){

@@ -27,8 +27,6 @@ public class UsuarioCtrl {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@Autowired
-	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping("/usuario")
 	public List<Usuario> getUsuarios(){
