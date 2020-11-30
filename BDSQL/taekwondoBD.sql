@@ -2,41 +2,42 @@
 --Llave primaria username. No puede haber NULL en ninguno de los
 --atributos.
 CREATE TABLE `usuario` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(45) NOT NULL,
   `tipo_usuario` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 --Tabla para alumno, llave primaria id_alumno autoincrementable,
 --llave foránea username que referencia a un usuario, puede ser NULL.
 CREATE TABLE `alumno` (
-  `id_Alumno` int(11) NOT NULL AUTO_INCREMENT,
+  `id_Alumno` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `a_paterno` varchar(50) NOT NULL,
   `a_materno` varchar(50) DEFAULT NULL,
-  `fotografia` blob NOT NULL,
+  `fotografia` varchar(200) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `seguro_medico` varchar(50) NOT NULL,
-  `certificado_medico` blob NOT NULL,
-  `carta_responsiva` blob NOT NULL,
+  `certificado_medico` varchar(200) NOT NULL,
+  `carta_responsiva` varchar(200) NOT NULL,
   `actividad` varchar(45) NOT NULL,
   `grado` varchar(45) NOT NULL,
-  `username` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id_Alumno`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  `username` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_Alumno`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  KEY `alumnofk1_idx` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 --Tabla para evento, llave primaria id_evento autoincrementable,
 CREATE TABLE `evento` (
-  `id_evento` int(11) NOT NULL AUTO_INCREMENT,
+  `id_evento` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
-  `fecha_inicio` datetime NOT NULL,
-  `fecha_fin` datetime NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
   `costo` double NOT NULL,
   `descripcion` varchar(100) NOT NULL,
   PRIMARY KEY (`id_evento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 --Tabla para examen, llave primaria id_examen autoincrementable
 CREATE TABLE `examen` (
