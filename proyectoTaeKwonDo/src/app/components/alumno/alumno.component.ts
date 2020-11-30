@@ -39,6 +39,19 @@ export class AlumnoComponent implements OnInit {
       grado: ['', Validators.required],
       username: ['', Validators.required]
     });
+    this.editarAlumnoForm = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      a_paterno: ['', Validators.required],
+      a_materno: ['', Validators.required],
+      fotografia: ['', Validators.required],
+      fecha_nacimiento: ['', Validators.required],
+      seguro_medico: ['', Validators.required],
+      certificado_medico: ['', Validators.required],
+      carta_responsiva: ['', Validators.required],
+      actividad: ['', Validators.required],
+      grado: ['', Validators.required],
+      username: ['', Validators.required]
+    })
 
 
 
@@ -121,6 +134,7 @@ export class AlumnoComponent implements OnInit {
   }
 
   get f() { return this.alumnoForm.controls;}
+  get fe() {return this.editarAlumnoForm.controls;}
   
   //Ventana para formulario de agregar alumno.
   openModalAlumno(){    
@@ -133,5 +147,14 @@ export class AlumnoComponent implements OnInit {
   openModalVerAlumno(alumno){
     this.alumnoDetalles = alumno;
     $("#verAlumnoModal").modal("show");
+  }
+
+  //Ventana para modificar un alumno.
+  openModalModificarAlumno(alumno){
+    this.editarAlumnoForm.reset();
+    this.editarAlumnoForm.setValue({
+      nombre: [alumno.nombre],
+    });
+    $("#modificarAlumno").modal("show");
   }
 }

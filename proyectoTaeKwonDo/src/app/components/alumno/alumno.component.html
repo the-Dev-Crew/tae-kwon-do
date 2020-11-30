@@ -34,7 +34,7 @@
                     <td>{{ alumno.a_materno }}</td>
                     <td>{{ alumno.actividad }}</td>
                     <td>{{ alumno.grado }}</td>
-                    <td>{{ alumno.usuario }}</td>
+                    <td>{{ alumno.username }}</td>
                     <td><button (click)="openModalVerAlumno(alumno)">Detalles</button></td>
                 </tr>
             </tbody>
@@ -183,11 +183,11 @@
                 <div class="caja-flex-horizontal" *ngIf="alumnoDetalles">
                     <div class="alumno-detalles-datos">
                         <p>Nombre completo: {{ alumnoDetalles.nombre }}&nbsp;{{ alumnoDetalles.a_paterno }}&nbsp;{{ alumnoDetalles.a_materno }}</p>
-                        <p>Fecha de nacimiento: {{ alumnoDetalles.fecha_nacimiento }}</p>
+                        <p>Fecha de nacimiento: {{ alumnoDetalles.fecha_nacimiento.substring(0, 10) }}</p>
                         <p>Clave del Seguro Médico: {{ alumnoDetalles.seguro_medico }}</p>
                         <p>Actividad: {{ alumnoDetalles.actividad }}</p>
                         <p>Grado/Listón: {{ alumnoDetalles.grado }}</p>
-                        <p>Usuario: {{ alumnoDetalles.usuario }}</p>
+                        <p>Usuario: {{ alumnoDetalles.username }}</p>
                         <a href="../../../assets/pdf/TDI-CodigosHTTP.pdf" target="blank">Certificado Médico</a>
                         <br><br>
                         <a href="../../../assets/pdf/TDI-JPA.pdf" target="blank">Carta Responsiva</a>
@@ -195,7 +195,7 @@
 
                     <div class="alumno-detalles-documentos caja-flex-vertical">
                         <img src="assets/img/karate.jpg">
-                        <button>Modificar Alumno</button>
+                        <button (click)="openModalModificarAlumno(alumnoDetalles)">Modificar Alumno</button>
                         <button>Eliminar Alumno</button>
                     </div>
                 </div>
@@ -204,4 +204,132 @@
     </div>
 </div>
 
+<!--Modal para modificar un alumno-->
+<div class="modal" id="modificarAlumno">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar Alumno</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <form [formGroup]="editarAlumnoForm" (ngSubmit)="updateAlumno()">
+                    <!--Input Nombre-->
+                    <div class="form-group">
+                        <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.nombre.errors }">
+                        <div *ngIf="submitted && fe.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="fe.nombre.errors.required">El nombre del alumno es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <!--Input apellido paterno-->
+                    <div class="form-group">
+                        <label for="a_paterno">Apellido Paterno<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="a_paterno" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.a_paterno.errors }">
+                        <div *ngIf="submitted && fe.a_paterno.errors" class="invalid-feedback">
+                            <div *ngIf="fe.a_paterno.errors.required">El apellido paterno del alumno es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <!--Input Apellido Materno-->
+                    <div class="form-group">
+                        <label for="a_materno">Apellido Materno<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="a_materno" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.a_materno.errors }">
+                        <div *ngIf="submitted && fe.a_materno.errors" class="invalid-feedback">
+                            <div *ngIf="fe.a_materno.errors.required">El apellido materno del alumno es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <!--Input Fotografía-->
+                    <div class="form-group">
+                        <label for="fotografia">Fotografía<span class="text-danger">*</span></label>
+                        <input type="file" formControlName="fotografia"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.fotografia.errors }">
+                        <div *ngIf="submitted && fe.fotografia.errors" class="invalid-feedback">
+                            <div *ngIf="fe.fotografia.errors.required">La fotografía del alumno es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <!--Input Fecha de Nacimiento-->
+                    <div class="form-group">
+                        <label for="fecha_nacimiento">Fecha de nacimiento<span class="text-danger">*</span></label>
+                        <input type="date" formControlName="fecha_nacimiento" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.fecha_nacimiento.errors }">
+                        <div *ngIf="submitted && fe.fecha_nacimiento.errors" class="invalid-feedback">
+                            <div *ngIf="fe.fecha_nacimiento.errors.required">La fecha de nacimiento del alumno es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <!--Input Seguro Médico-->
+                    <div class="form-group">
+                        <label for="seguro_medico">Seguro médico<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="seguro_medico" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.seguro_medico.errors }">
+                        <div *ngIf="submitted && fe.seguro_medico.errors" class="invalid-feedback">
+                            <div *ngIf="fe.seguro_medico.errors.required">El seguro médico del alumno es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <!--Input Certificado Médico-->
+                    <div class="form-group">
+                        <label for="certificado_medico">Certificado médico<span class="text-danger">*</span></label>
+                        <input type="file" formControlName="certificado_medico" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.certificado_medico.errors }">
+                        <div *ngIf="submitted && fe.certificado_medico.errors" class="invalid-feedback">
+                            <div *ngIf="fe.certificado_medico.errors.required">El certificado médico del alumno es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <!--Inpupt Carta Responsiva-->
+                    <div class="form-group">
+                        <label for="carta_responsiva">Carta responsiva<span class="text-danger">*</span></label>
+                        <input type="file" formControlName="carta_responsiva" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.carta_responsiva.errors }">
+                        <div *ngIf="submitted && fe.carta_responsiva.errors" class="invalid-feedback">
+                            <div *ngIf="fe.carta_responsiva.errors.required">La carta responsiva del alumno es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <!--Input Actividad-->
+                    <div class="form-group">
+                        <label for="actividad">Actividad<span class="text-danger">*</span>;</label>
+                        <input type="text" formControlName="actividad" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.actividad.errors }">
+                        <div *ngIf="submitted && fe.actividad.errors" class="invalid-feedback">
+                            <div *ngIf="fe.actividad.errors.required">La actividad del alumno es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <!--Input Grado-->
+                    <div class="form-group">
+                        <label for="grado">Grado<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="grado" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.grado.errors }">
+                        <div *ngIf="submitted && fe.grado.errors" class="invalid-feedback">
+                            <div *ngIf="fe.grado.errors.required">El grado de la actividad del alumno es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <!--Input Username-->
+                    <div class="form-group">
+                        <label for="username">Usuario<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.username.errors }">
+                        <div *ngIf="submitted && fe.username.errors" class="invalid-feedback">
+                            <div *ngIf="fe.username.errors.required">El usuario del alumno es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!--Footer que contiene el botón de guardar-->
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 </html>

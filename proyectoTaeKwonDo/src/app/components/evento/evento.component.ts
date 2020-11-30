@@ -127,7 +127,6 @@ export class EventoComponent implements OnInit {
     )
   }
 
-  //No me acuerdo que hacen estas funciones xD
   get f() { return this.eventoForm.controls;}
   get fe(){ return this.editarEventoForm.controls;}
 
@@ -139,9 +138,8 @@ export class EventoComponent implements OnInit {
   }
 
   //Modal para ver los datos de un Evento.
-  openModalVerEvento(id_evento){
-    this.getEvento(id_evento);
-    this.eventoDetalles = this.eventos[(id_evento-1)];
+  openModalVerEvento(evento){
+    this.eventoDetalles = evento;
     $("#verEventoModal").modal("show");
   }
 

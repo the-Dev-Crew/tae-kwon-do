@@ -26,9 +26,9 @@
                 <tr *ngFor="let evento of eventos">
                     <td hidden>{{ evento.id_evento }}</td>
                     <td>{{ evento.nombre }}</td>
-                    <td>Inicia el {{ evento.fecha_inicio }} y termina el {{ evento.fecha_fin }}</td>
+                    <td>Inicia el {{ evento.fecha_inicio.substring(0, 10) }} y termina el {{ evento.fecha_fin.substring(0, 10) }}</td>
                     <td>{{ evento.costo }}</td>
-                    <td><button (click)="openModalVerEvento(evento.id_evento)">Detalles</button></td>
+                    <td><button (click)="openModalVerEvento(evento)">Detalles</button></td>
                 </tr>
             </tbody>
         </table>
@@ -163,7 +163,7 @@
 
                     <!--Input para el nombre del evento-->
                     <div class="form-group">
-                        <label for="nombre">Nombre<span class="text-danger">*</span>:&nbsp;</label>
+                        <label for="nombre">Nombre<span class="text-danger">*</span></label>
                         <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid':submitted && fe.nombre.errors}">
                         <div *ngIf="submitted && fe.nombre.errors" class="invalid-feedback">
                             <div *ngIf="fe.nombre.errors.required">El nombre del evento es obligatorio
@@ -182,7 +182,7 @@
 
                     <!--Input para la fecha de finalización del evento-->
                     <div class="form-group">
-                        <label for="fecha_fin">Fecha de fin/clausura:<span class="text-danger">*</span></label>
+                        <label for="fecha_fin">Fecha de fin/clausura<span class="text-danger">*</span></label>
                         <input type="date" formControlName="fecha_fin" class="form-control" [ngClass]="{ 'is-invalid':submitted && fe.fecha_fin.errors}">
                         <div *ngIf="submitted && fe.fecha_fin.errors" class="invalid-feedback">
                             <div *ngIf="fe.fecha_fin.errors.required">La fecha de finalización del evento es obligatoria</div>
