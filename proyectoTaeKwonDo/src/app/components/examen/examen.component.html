@@ -144,6 +144,7 @@
     </div>
 </div>
 
+<!--Modal para modificar un examen-->
 <div class="modal" id="modificarExamen">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -155,17 +156,18 @@
 
             <div class="modal-body">
                 <form [formGroup]="editarExamenForm" (ngSubmit)="updateExamen()">
+
                     <div class="form-group">
                         <label for="nombre">Nombre<span class="text-danger">*</span></label>
                         <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.nombre.errors }" >
                         <div *ngIf="submitted && fe.nombre.errors" class="invalid-feedback">
-                            <div *ngIf="fe.nombre.errors.required">El nombre es obligatorio</div>
+                            <div *ngIf="fe.nombre.errors.required">El nombre del examen es obligatorio</div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="costo">Costo<span class="text-danger">*</span></label>
-                        <input type="number" formControlName="costo" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.costo.errors }" />
+                        <input type="number" min="0" formControlName="costo" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.costo.errors }" />
                         <div *ngIf="submitted && fe.costo.errors" class="invalid-feedback">
                         <div *ngIf="fe.costo.errors.required">El costo es obligatrio</div>
                         </div>
@@ -178,6 +180,7 @@
                         <div *ngIf="fe.tipo.errors.required">El tipo es obligatrio</div>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="fecha">Fecha<span class="text-danger">*</span></label>
                         <input type="date" formControlName="fecha" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.fecha.errors }" >
@@ -208,7 +211,6 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             </div>
         
         </div>

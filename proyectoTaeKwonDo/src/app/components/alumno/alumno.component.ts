@@ -57,7 +57,7 @@ export class AlumnoComponent implements OnInit {
       err => console.error(err)
     )
     
-    //this.alumnos = [new Alumno(1, "Aries", "Becerra", "", "assets/img/karate.jpg", "1996-04-09", "000000000001", "9878967436574", "907867868768768", "TaeKwonDo", "Café", "BAries"), new Alumno (2, "Haans", "Lopez", "Hernández", "assets/img/karate.jpg", "1996-04-16", "000000000002", "", "", "TaeKwonDo", "Blanco", "killerhaans"), new Alumno(3, "Christian", "Tello", "Ruiz", "foto", "1996-09-21", "0000000003", "87364817364", "587294898475", "TaeKwonDo", "Amarillo", "ChrisTellox"), new Alumno(4, "Mauricio", "Apellido1", "Apellido2", "foto", "1996-05-03", "0000000004", "746578465874589", "4875874584708", "Tae Kwon Do", "Azul", "MauSinApellidos")];
+    this.alumnos = [new Alumno(1, "Aries", "Becerra", "", "assets/img/karate.jpg", "1996-04-09", "000000000001", "9878967436574", "907867868768768", "TaeKwonDo", "Café", "BAries"), new Alumno (2, "Haans", "Lopez", "Hernández", "assets/img/karate.jpg", "1996-04-16", "000000000002", "", "", "TaeKwonDo", "Blanco", "killerhaans"), new Alumno(3, "Christian", "Tello", "Ruiz", "foto", "1996-09-21", "0000000003", "87364817364", "587294898475", "TaeKwonDo", "Amarillo", "ChrisTellox"), new Alumno(4, "Mauricio", "Apellido1", "Apellido2", "foto", "1996-05-03", "0000000004", "746578465874589", "4875874584708", "Tae Kwon Do", "Azul", "MauSinApellidos")];
   }
 
   // Consultar un alumno
