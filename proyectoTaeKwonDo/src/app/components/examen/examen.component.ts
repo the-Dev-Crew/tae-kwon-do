@@ -91,6 +91,14 @@ export class ExamenComponent implements OnInit {
       return;
     }
 
+    let aux: Examen = this.examenForm.value;
+    console.log('Nuevo Examen: '+ aux.nombre);
+    console.log('Costo: ' + aux.costo);
+    console.log('tipo: ' + aux.tipo);
+    console.log('fecha: ' + aux.fecha);
+    console.log('Actividad: ' + aux.actividad);
+    console.log('grado: ' + aux.grado);
+    $("examenModal").modal("hide");
     this.examenService.createExamen(this.examenForm.value).subscribe(
       res => {
         $("#examenModal").modal("hide");
