@@ -26,7 +26,7 @@ export class AlumnoComponent implements OnInit {
   ngOnInit(): void {
     //Inice el formulario.
     this.alumnoForm = this.formBuilder.group({
-      id: [''],
+      //id: [''],
       nombre: ['', Validators.required],
       a_paterno: ['', Validators.required],
       a_materno: ['', Validators.required],
@@ -37,7 +37,7 @@ export class AlumnoComponent implements OnInit {
       carta_responsiva: ['', Validators.required],
       actividad: ['', Validators.required],
       grado: ['', Validators.required],
-      usuario: ['', Validators.required]
+      username: ['', Validators.required]
     });
 
 
@@ -91,6 +91,7 @@ export class AlumnoComponent implements OnInit {
     }
 
     let aux: Alumno = this.alumnoForm.value;
+    console.log("fecha" + aux.fotografia);
     $("#alumnoModal").modal("hide");
 
     this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(

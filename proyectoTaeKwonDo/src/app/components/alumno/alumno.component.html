@@ -148,17 +148,20 @@
 
                     <!-- Input para la actividad del nuevo alumno-->
                     <div class="form-group">
-                        <label for="usuario">Usuario:&nbsp;</label>
-                        <input type="text" formControlName="usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
-                        <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
-                            <div *ngIf="f.usuario.errors.required">El usuario del alumno es obligatoria</div>
+                        <label for="username">Usuario:&nbsp;</label>
+                        <input type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">El usuario del alumno es obligatoria</div>
                         </div>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
                     </div>
                 </form>
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-success btn-block">Guardar</button>
             </div>
         </div>
     </div>

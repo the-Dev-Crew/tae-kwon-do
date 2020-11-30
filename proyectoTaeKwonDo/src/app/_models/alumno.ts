@@ -12,10 +12,10 @@ export class Alumno{
     carta_responsiva: string;
     actividad: string;
     grado: string;
-    usuario: string;
+    username: string;
     
 
-    constructor(id, nombre, a_paterno, a_materno, fotografia, fecha_nacimiento, seguro_medico, certificado_medico, carta_responsiva, actividad, grado, usuario){
+    constructor(id, nombre, a_paterno, a_materno, fotografia, fecha_nacimiento, seguro_medico, certificado_medico, carta_responsiva, actividad, grado, username){
         this.id = id;
         this.nombre = nombre;
         this.a_paterno = a_paterno;
@@ -27,7 +27,7 @@ export class Alumno{
         this.carta_responsiva = carta_responsiva;
         this.actividad = actividad;
         this.grado = grado;
-        this.usuario = usuario;
+        this.username = username;
     }
 
 }

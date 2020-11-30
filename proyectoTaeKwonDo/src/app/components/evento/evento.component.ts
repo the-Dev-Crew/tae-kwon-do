@@ -31,9 +31,9 @@ export class EventoComponent implements OnInit {
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
       costo: ['', Validators.required],
-      descripcion: ['', Validators.requiredTrue],
+      descripcion: [''],
       //NOS FALTA VER QUE ONDA CON SU RESPECTIVA LISTA DE TIPO_EVENTO
-      tipo_evento: ['', Validators.required]
+      //tipo_evento: ['', Validators.required]
     });
     //iniciamos el formulario vacío para modificar un evento.
     this.editarEventoForm = this.formBuilder.group({
@@ -42,9 +42,9 @@ export class EventoComponent implements OnInit {
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
       costo: ['', Validators.required],
-      descripcion: ['', Validators.requiredTrue],
+      descripcion: [''],
       //NOS FALTA VER QUE ONDA CON SU RESPECTIVA LISTA DE TIPO_EVENTO
-      tipo_evento: ['', Validators.required]
+      //tipo_evento: ['', Validators.required]
     });
     this.getEventos();
   }
@@ -60,7 +60,7 @@ export class EventoComponent implements OnInit {
       err => console.error(err)
     )
 
-    this.eventos = [new Evento(1, "Cumpleaños de Aries", "2021-04-09", "2021-04-09", 55.55, "Evento para el cumpleaños de Aries.", []), new Evento(2, "Cumpleaños de Haans", "2021-04-16", "2021-04-16", 55.5,"Evento para festejar el cumpleaños de Haans", []), new Evento(3, "Cumpleaños de Christian", "2021-09-17", "2021-09-17", 55.5, "Evento para festejar el cumpleaños de Christian", [])];
+    //this.eventos = [new Evento(1, "Cumpleaños de Aries", "2021-04-09", "2021-04-09", 55.55, "Evento para el cumpleaños de Aries.", []), new Evento(2, "Cumpleaños de Haans", "2021-04-16", "2021-04-16", 55.5,"Evento para festejar el cumpleaños de Haans", []), new Evento(3, "Cumpleaños de Christian", "2021-09-17", "2021-09-17", 55.5, "Evento para festejar el cumpleaños de Christian", [])];
   }
 
   //Obtenemos un evento en específico a partir de un id_evento.
@@ -99,7 +99,7 @@ export class EventoComponent implements OnInit {
     console.log('Fecha de Fin: '+ aux.fecha_fin);
     console.log('Costo: '+ aux.costo);
     console.log('Descripcion: '+ aux.descripcion);
-    console.log('Tipo de Evento: '+ aux.tipo_evento);
+    //console.log('Tipo de Evento: '+ aux.tipo_evento);
 
     this.eventoService.createEvento(this.eventoForm.value).subscribe(
       res => {
@@ -151,11 +151,11 @@ export class EventoComponent implements OnInit {
     this.editarEventoForm.setValue({
       id_evento: [evento.id_evento],
       nombre: [evento.nombre],
-      fecha_inicio: [evento.fecha_inicio],
-      fecha_fin: [evento.fecha_fin],
+      fecha_inicio: [evento.fecha_inicio.substring(0, 10)],
+      fecha_fin: [evento.fecha_fin.substring(0, 10)],
       costo: [evento.costo],
       descripcion: [evento.descripcion],
-      tipo_evento: [evento.tipo_evento],
+      //tipo_evento: [evento.tipo_evento],
     });
     $("#modificarEvento").modal("show");
   }
