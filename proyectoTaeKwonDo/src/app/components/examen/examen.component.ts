@@ -133,4 +133,10 @@ export class ExamenComponent implements OnInit {
     this.examenDetalles = this.examenes[(id_examen-1)];
     $("#verExamenModal").modal("show");
   }
+
+  openModalModificarExamen(id_examen){
+    this.getExamen(id_examen);
+    this.examenDetalles = this.examenes[(id_examen-1)];
+    $("#modificarExamen").modal("show");
+  }
 }
