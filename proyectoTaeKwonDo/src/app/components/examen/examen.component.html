@@ -137,91 +137,80 @@
                     <p>Fecha de aplicación:&nbsp;{{ examenDetalles.fecha }}</p>
                     <p>Actividad a la que pertenece el examen:&nbsp;{{ examenDetalles.actividad }}</p>
                     <p>Grado que califica:&nbsp;{{ examenDetalles.grado }}</p>
-                    <button (click)="openModalModificarExamen(examenDetalles.id_examen)">Modificar</button>
+                    <button (click)="openModalModificarExamen(examenDetalles)">Modificar</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
 <div class="modal" id="modificarExamen">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            
-            <!--Header-->
+
             <div class="modal-header">
-                <h4 class="modal-title">Modificar Examen</h4>
+                <h4 class="modal-title">Editar Examen</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <!--Body-->
             <div class="modal-body">
                 <form [formGroup]="editarExamenForm" (ngSubmit)="updateExamen()">
-                    
-                    <div *ngIf="examenDetalles">
-                        <!--Input para el nombre del examen-->
-                        <div class="form-group">
-                            <label for="nombre">Nombre:&nbsp;</label>
-                            <input type="text" value="{{ examenDetalles.nombre }}" formControlName="nombre"
-                            [ngClass]="{ 'is-invalid':submitted && fe.nombre.errors}"
-                            >
-                            <div *ngIf="submitted && fe.nombre.errors" class="invalid-feedback">
-                                <div *ngIf="fe.nombre.errors.required">El nombre del examen es obligatorio
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--Input para el costo del examen-->
-                        <div class="form-group">
-                            <label for="costo">Costo de aplicación: &nbsp;</label>
-                            <input type="number" value="{{ examenDetalles.costo }}" min="0" formControlName="costo" [ngClass]="{'is.invalid': submitted && f.costo.errors}">
-                            <div *ngIf="submitted && f.costo.errors" class="invalid-feedback">
-                                <div *ngIf="f.costo.errors.required">El costo de aplicación al examen es obligatorio</div>
-                            </div>
-                        </div>
-
-                        <!--Input para el tipo de examen-->
-                        <div class="form-group">
-                            <label for="tipo">Tipo:&nbsp;</label>
-                            <input type="text" value="{{ examenDetalles.tipo }}" formControlName="tipo"
-                            [ngClass]="{ 'is-invalid':submitted && f.tipo.errors}">
-                            <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
-                                <div *ngIf="f.tipo.errors.required">El tipo del examen es obligatorio
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--Input para la fecha de aplicación del examen-->
-                        <div class="form-group">
-                            <label for="fecha">Fecha de aplicación:&nbsp;</label>
-                            <input type="date" value="{{ examenDetalles.fecha }}" formControlName="fecha" class="form-control" [ngClass]="{ 'is-invalid':submitted && f.fecha.errors}">
-                            <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
-                                <div *ngIf="f.fecha.errors.required">La fecha de aplicación del examen es obligatoria</div>
-                            </div>
-                        </div>
-
-                        <!-- Input para la actividad a la que pertenece el examen-->
-                        <div class="form-group">
-                            <label for="actividad">Actividad:&nbsp;</label>
-                            <input type="text" value="{{ examenDetalles.actividad }}" formControlName="actividad" [ngClass]="{ 'is-invalid': submitted && f.actividad.errors }">
-                            <div *ngIf="submitted && f.actividad.errors" class="invalid-feedback">
-                                <div *ngIf="f.actividad.errors.required">La actividad a la que pertenece el examen es obligatoria</div>
-                            </div>
-                        </div>
-
-                        <!-- Input para el grado que está calificando el examen-->
-                        <div class="form-group">
-                            <label for="grado">Grado:&nbsp;</label>
-                            <input type="text" value="{{ examenDetalles.grado }}" formControlName="grado" [ngClass]="{ 'is-invalid': submitted && f.grado.errors }">
-                            <div *ngIf="submitted && f.grado.errors" class="invalid-feedback">
-                                <div *ngIf="f.grado.errors.required">El grado que califica el examen es obligatorio</div>
-                            </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.nombre.errors }" >
+                        <div *ngIf="submitted && fe.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="fe.nombre.errors.required">El nombre es obligatorio</div>
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="costo">Costo<span class="text-danger">*</span></label>
+                        <input type="number" formControlName="costo" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.costo.errors }" />
+                        <div *ngIf="submitted && fe.costo.errors" class="invalid-feedback">
+                        <div *ngIf="fe.costo.errors.required">El costo es obligatrio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo">Tipo<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="tipo" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.tipo.errors }" />
+                        <div *ngIf="submitted && fe.tipo.errors" class="invalid-feedback">
+                        <div *ngIf="fe.tipo.errors.required">El tipo es obligatrio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha<span class="text-danger">*</span></label>
+                        <input type="date" formControlName="fecha" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.fecha.errors }" >
+                        <div *ngIf="submitted && fe.fecha.errors" class="invalid-feedback">
+                            <div *ngIf="fe.fecha.errors.required">fecha es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="actividad">actividad<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="actividad" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.actividad.errors }" >
+                        <div *ngIf="submitted && fe.actividad.errors" class="invalid-feedback">
+                            <div *ngIf="fe.actividad.errors.required">actividad es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="grado">grado<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="grado" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.grado.errors }" >
+                        <div *ngIf="submitted && fe.grado.errors" class="invalid-feedback">
+                            <div *ngIf="fe.grado.errors.required">grado es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
                 </form>
             </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        
         </div>
     </div>
 </div>
