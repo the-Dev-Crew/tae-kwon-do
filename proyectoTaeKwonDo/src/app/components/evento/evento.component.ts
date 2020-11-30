@@ -133,6 +133,7 @@ export class EventoComponent implements OnInit {
 
   //Modal para crear evento.
   openModalEvento(){
+    this.submitted = false;
     this.eventoForm.reset();
     $("#eventoModal").modal("show");
   }
