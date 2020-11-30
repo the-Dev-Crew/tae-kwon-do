@@ -90,6 +90,9 @@ export class AlumnoComponent implements OnInit {
       return;
     }
 
+    let aux: Alumno = this.alumnoForm.value;
+    $("#alumnoModal").modal("hide");
+
     this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(
       res => {
         $("#alumnoModal").modal("hide");
@@ -120,6 +123,7 @@ export class AlumnoComponent implements OnInit {
   
   //Ventana para formulario de agregar alumno.
   openModalAlumno(){    
+    this.submitted = false;
     this.alumnoForm.reset();    
     $("#alumnoModal").modal("show");  
   }
