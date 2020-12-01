@@ -140,7 +140,10 @@
                     <p>Fecha de aplicación:&nbsp;{{ examenDetalles.fecha }}</p>
                     <p>Actividad a la que pertenece el examen:&nbsp;{{ examenDetalles.actividad }}</p>
                     <p>Grado que califica:&nbsp;{{ examenDetalles.grado }}</p>
-                    <button (click)="openModalModificarExamen(examenDetalles)">Modificar</button>
+                    <div class="caja-flex-horizontal">
+                        <button (click)="openModalModificarExamen(examenDetalles)">Modificar</button>
+                        <button (click)="deleteExamen(examenDetalles.id_examen)">Eliminar</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -53,8 +53,6 @@ export class AlumnoComponent implements OnInit {
       username: ['', Validators.required]
     })
 
-
-
     //Consulta lista de alumnos.
     this.getAlumnos();
   }
@@ -89,6 +87,7 @@ export class AlumnoComponent implements OnInit {
     this.alumnoService.deleteAlumno(id).subscribe(
       res => {
         this.getAlumnos();
+        $("#verAlumnoModal").modal("hide");
       },
       err => console.error(err)
     )
@@ -154,7 +153,18 @@ export class AlumnoComponent implements OnInit {
     this.editarAlumnoForm.reset();
     this.editarAlumnoForm.setValue({
       nombre: [alumno.nombre],
+      a_paterno: [alumno.a_paterno],
+      a_materno: [alumno.a_materno],
+      fotografia: [''],
+      fecha_nacimiento: [alumno.fecha_nacimiento],
+      seguro_medico: [alumno.seguro_medico],
+      certificado_medico: [''],
+      carta_responsiva: [''],
+      actividad: [alumno.actividad],
+      grado: [alumno.grado],
+      username: [alumno.username],
     });
+    
     $("#modificarAlumno").modal("show");
   }
 }

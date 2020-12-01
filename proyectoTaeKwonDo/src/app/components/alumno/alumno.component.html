@@ -196,7 +196,7 @@
                     <div class="alumno-detalles-documentos caja-flex-vertical">
                         <img src="assets/img/karate.jpg">
                         <button (click)="openModalModificarAlumno(alumnoDetalles)">Modificar Alumno</button>
-                        <button>Eliminar Alumno</button>
+                        <button (click)="deleteAlumno(alumnoDetalles.id)">Eliminar Alumno</button>
                     </div>
                 </div>
             </div>
@@ -314,7 +314,7 @@
                         <label for="username">Usuario<span class="text-danger">*</span></label>
                         <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.username.errors }">
                         <div *ngIf="submitted && fe.username.errors" class="invalid-feedback">
-                            <div *ngIf="fe.username.errors.required">El usuario del alumno es obligatoria</div>
+                            <div *ngIf="fe.username.errors.required">El usuario del alumno es obligatorio</div>
                         </div>
                     </div>
 

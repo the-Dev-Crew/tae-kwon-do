@@ -79,6 +79,7 @@ export class EventoComponent implements OnInit {
     this.eventoService.deleteEvento(id_evento).subscribe(
       res => {
         this.getEventos();
+        $("#verEventoModal").modal("hide");
       },
       err => console.error(err) 
     )

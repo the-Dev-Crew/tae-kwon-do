@@ -77,6 +77,7 @@ export class ExamenComponent implements OnInit {
     this.examenService.deleteExamen(id_examen).subscribe(
       res => {
         this.getExamenes();
+        $("#verExamenModal").modal("hide");
       },
       err => console.error(err)
     )

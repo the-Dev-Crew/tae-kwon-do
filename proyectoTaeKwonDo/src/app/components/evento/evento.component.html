@@ -139,7 +139,10 @@
                     <p>Fecha de fin/clausura del evento:&nbsp;</p>
                     <p>Costo por entrada:&nbsp;${{ eventoDetalles.costo }}</p>
                     <p>Descripción:&nbsp;{{ eventoDetalles.descripcion }}</p>
-                    <button (click)="openModalModificarEvento(eventoDetalles)">Modificar</button>
+                    <div class="caja-flex-horizontal">
+                        <button (click)="openModalModificarEvento(eventoDetalles)">Modificar</button>
+                        <button (click)="deleteEvento(eventoDetalles.id_evento)">Eliminar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -164,7 +167,7 @@
                     <!--Input para el nombre del evento-->
                     <div class="form-group">
                         <label for="nombre">Nombre<span class="text-danger">*</span></label>
-                        <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid':submitted && fe.nombre.errors}">
+                        <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.nombre.errors }">
                         <div *ngIf="submitted && fe.nombre.errors" class="invalid-feedback">
                             <div *ngIf="fe.nombre.errors.required">El nombre del evento es obligatorio
                             </div>
