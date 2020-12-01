@@ -83,10 +83,10 @@ export class AlumnoComponent implements OnInit {
   }
 
   // Eliminar un alumno
-  deleteAlumno(id){
+  deleteAlumno(id: number){
     this.alumnoService.deleteAlumno(id).subscribe(
       res => {
-        this.getAlumnos();
+        this.getAlumnos()
         $("#verAlumnoModal").modal("hide");
       },
       err => console.error(err)
