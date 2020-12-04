@@ -1,6 +1,7 @@
 
 taekwondo Spring/taekwondo/src/main/resources/application.properties
 taekwondo Spring/taekwondo/src/main/resources/application.properties
-taekwondo Spring/bin/*
+taekwondo Spring/taekwondo/bin/*
 proyectoTaeKwonDo/package-lock.json
 proyectoTaeKwonDo/package.json
+proyectoTaeKwonDo/package-lock.json
