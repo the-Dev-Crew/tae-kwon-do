@@ -7,10 +7,12 @@ import { AlumnoComponent } from './components/alumno/alumno.component';
 import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
 import { EventoComponent } from './components/evento/evento.component';
 import { ExamenComponent } from './components/examen/examen.component';
+import { IndexComponent } from './components/index/index.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -21,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     TipoEventoComponent,
     EventoComponent,
     ExamenComponent,
+    IndexComponent,
   ],
   imports: [
     BrowserModule,

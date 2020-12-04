@@ -5057,7 +5057,7 @@
  }
  
  .card {
-   width: 70%;
+   width: 100%;
    position: relative;
    display: -webkit-box;
    display: -ms-flexbox;
@@ -11087,6 +11087,14 @@
   align-items: center;
  }
 
+ .main{
+  flex-basis: 65%;
+ }
+
+ .tablero{
+   flex-basis: calc(35% - 10px) 
+  }
+
  a{
   color: #000000;
  }
@@ -11187,3 +11195,43 @@
   height: 80%;
   max-height: 250px;
 }
+
+/*Página de Inicio*/
+.contenedor-inicio {
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  padding: 15px 15px;
+}
+
+.contenedor-inicio h1{
+  font-family: 'Goldman', cursive;
+  font-size: 25px;
+  color: #ffffff;
+  background-color: rgba(214, 214, 214, 0.5);
+}
+
+.contenedor-inicio p{
+  font-family: 'Baloo Chettan 2', cursive;
+  line-height: 1.15;
+  color: #ffffff;
+  background-color: rgba(214, 214, 214, 0.5);
+}
+
+.contenedor-inicio img{
+  height: 100%;
+  width: 100%;
+  max-height: 550px;
+  size: cover;
+  position: center center;
+}
+
+.mision-fondo {
+  background-image: url(./assets/img/fondo-mision.jpg);
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  min-height: 600px;
+}
+
