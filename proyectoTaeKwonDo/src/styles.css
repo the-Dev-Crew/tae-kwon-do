@@ -7371,6 +7371,8 @@
  
  .d-block {
    display: block !important;
+   max-height: 500px;
+   min-height: 300px;
  }
  
  .d-table {
@@ -11146,7 +11148,7 @@
 .contenedor-footer {
   background-color: #000000;
   padding: 1rem 1rem;
-  margin: 0px 0px;
+  margin: 1rem 0px 0px 0px;
   }
 
 .contenedor-footer p {
@@ -11199,6 +11201,7 @@
 /*Página de Inicio*/
 .contenedor-inicio {
   height: 100%;
+  max-height: 500px;
   display:flex;
   flex-direction: column;
   padding: 15px 15px;
@@ -11218,20 +11221,17 @@
   background-color: rgba(214, 214, 214, 0.5);
 }
 
-.contenedor-inicio img{
-  height: 100%;
+.img-object {
   width: 100%;
-  max-height: 550px;
-  size: cover;
-  position: center center;
+  height: auto;
 }
 
-.mision-fondo {
-  background-image: url(./assets/img/fondo-mision.jpg);
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  min-height: 600px;
+@supports(object-fit: cover){
+  .img-object {
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
 }
+
 
