@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.taekwondo.model.Alumno;
+import com.taekwondo.model.Evento;
 import com.taekwondo.model.Participa;
 import com.taekwondo.service.ParticipaService;
 
@@ -31,8 +32,8 @@ public class ParticipaCtrl {
 	}
 	
 	@GetMapping("/participa/alumno/{id}")
-	public List<Participa> getParticipa(@PathVariable int id){
-		return pSrvc.getParticipaciones(id);
+	public List<Evento> getParticipa(@PathVariable int id){
+		return pSrvc.getEventosdeAlumno(id);
 	}
 	
 	@GetMapping("/participa/evento/{id}")

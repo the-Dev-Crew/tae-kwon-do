@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.taekwondo.model.Alumno;
+import com.taekwondo.model.Evento;
 import com.taekwondo.model.Participa;
 import com.taekwondo.repository.AlumnoRepository;
+import com.taekwondo.repository.EventoRepository;
 import com.taekwondo.repository.ParticipaRepository;
 
 @Service
@@ -19,6 +21,8 @@ public class ParticipaServiceImp implements ParticipaService {
 	private ParticipaRepository partRepo;
 	@Autowired 
 	private AlumnoRepository ar;
+	@Autowired
+	private EventoRepository er;
 	
 	@Override
 	public List<Participa> getParticipaciones() {
@@ -26,10 +30,19 @@ public class ParticipaServiceImp implements ParticipaService {
 	}
 
 	@Override
-	public List<Participa> getParticipaciones(int id_alumno) {
-		return partRepo.getParticipaciones(id_alumno);
+	public List<Evento> getEventosdeAlumno(int id_alumno) {
+		List<Integer> l = partRepo.getEventosdeAlumno(id_alumno);
+		List<Evento> eventos = new ArrayList<Evento>();
+		
+		for(int i = 0 ; i< l.size(); i++) {
+			int id = l.get(i);
+			Evento aux = er.findById(id).get();
+			eventos.add(aux);
+		}
+		return eventos;
 	}
-
+	
+	
 	@Override
 	public List<Alumno> getAlumnosParticipantes(int id_evento) {
 		List<Integer> l = partRepo.getAlumnosParticipantes(id_evento);
@@ -65,7 +78,8 @@ public class ParticipaServiceImp implements ParticipaService {
 		return partRepo.getParticipacion(id_alumno, id_evento);
 		
 	}
-	
+
+
 	
 
 
