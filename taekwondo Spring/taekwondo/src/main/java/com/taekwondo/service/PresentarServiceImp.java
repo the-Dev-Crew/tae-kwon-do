@@ -27,6 +27,11 @@ public class PresentarServiceImp implements PresentarService {
 	public List<Presentar> getPresentar() {
 		return presentarRepo.findAll();
 	}
+	
+	@Override
+	public Presentar getPresentar(int id) {
+		return presentarRepo.findById(id).get();
+	}
 
 	@Override
 	public List<Examen> getExamenesPresentados(int id_alumno) {
@@ -53,5 +58,28 @@ public class PresentarServiceImp implements PresentarService {
 		}
 		return alumnos;
 	}
+	
+	@Override
+	public void createPresentar(Presentar p) {
+		presentarRepo.save(p);
+		
+	}
+
+	@Override
+	public void deletePresentar(int id) {
+		presentarRepo.deleteById(id);
+		
+	}
+
+	@Override
+	public Presentar getPresentar(int id_alumno, int id_examen) {
+		return presentarRepo.getPresentar(id_alumno, id_examen);
+	}
+
+
+	
+	
+
+
 	
 }

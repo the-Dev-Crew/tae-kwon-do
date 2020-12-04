@@ -16,4 +16,8 @@ public interface PresentarRepository extends JpaRepository<Presentar, Integer> {
 	
 	@Query(value="select id_alumno from presentar where id_examen = :id_examen", nativeQuery=true)
 	List<Integer> getAlumnosPresentados(int id_examen);
+	
+	
+	@Query(value = "Select * from presentar where id_alumno = :id_alumno and id_examen = :id_examen", nativeQuery=true)
+	Presentar getPresentar(int id_alumno, int id_examen);
 }
