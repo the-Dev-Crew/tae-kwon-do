@@ -11147,13 +11147,19 @@
 
  .navegador a{
   text-decoration: none;
+  transition: all 0.3s ease;
   margin-right: 1rem;
   color: #ffffff;
   font-size: 1rem;
+  padding: 10px;
  }
 
  .navegador a:last-of-type{
-  margin-right: 0;
+  margin: 0;
+ }
+
+ .navegador a:hover{
+  background-color: #000;
  }
 
 /*Footer*/
@@ -11161,6 +11167,7 @@
   background-color: #000000;
   padding: 1rem 1rem;
   margin: 0px 0px 0px 0px;
+  break-after: always;
   }
 
 .contenedor-footer p {
@@ -11219,18 +11226,17 @@
   padding: 15px 15px;
 }
 
-.contenedor-inicio h1{
+.contenedor-inicio h2{
   font-family: 'Goldman', cursive;
-  font-size: 25px;
+  font-size: 2.5rem;
   color: #ffffff;
-  background-color: rgba(214, 214, 214, 0.5);
 }
 
 .contenedor-inicio p{
   font-family: 'Baloo Chettan 2', cursive;
   line-height: 1.15;
   color: #ffffff;
-  background-color: rgba(214, 214, 214, 0.5);
+  word-break: normal;
 }
 
 .img-object {
@@ -11245,6 +11251,7 @@
   height: 100%;
   width: auto;
   min-height: 500px;
+  padding: 10% 20%;
 }
 
 .img-vision {
@@ -11255,7 +11262,7 @@
   height: 100%;
   width: auto;
   min-height: 500px;
-
+  padding: 10% 20%;
 }
 
 .img-valores {
@@ -11266,4 +11273,5 @@
   height: 100%;
   width: auto;
   min-height: 500px;
+  padding: 10% 20%;
 }
