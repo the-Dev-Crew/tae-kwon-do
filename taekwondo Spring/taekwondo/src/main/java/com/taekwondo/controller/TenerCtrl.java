@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.taekwondo.model.Evento;
-import com.taekwondo.model.Relacionar;
 import com.taekwondo.model.Tener;
 import com.taekwondo.model.Tipo_Evento;
 import com.taekwondo.service.TenerService;
