@@ -75,31 +75,37 @@ CREATE TABLE `participa` (
 --Tabla presentar que nos indica que alumnos han presentado que examenes.
 --Solo tiene dos tributos, ambos llaves foráneas.
 CREATE TABLE `presentar` (
-  `id_alumno` int(11) NOT NULL,
-  `id_examen` int(11) NOT NULL,
+  `id_alumno` int NOT NULL,
+  `id_examen` int NOT NULL,
+  `id_presentar` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_presentar`),
   KEY `presentarfk1_idx` (`id_alumno`),
   KEY `presentarfk2_idx` (`id_examen`),
-  CONSTRAINT `presentarfk1` FOREIGN KEY (`id_alumno`) REFERENCES `alumno` (`id_alumno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `presentarfk1` FOREIGN KEY (`id_alumno`) REFERENCES `alumno` (`id_Alumno`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `presentarfk2` FOREIGN KEY (`id_examen`) REFERENCES `examen` (`id_examen`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 --Tabla relacionar que nos indica que actividades están presentes o se
 --relacionan con qué eventos.
 --Cuenta con un atributo que es llave foránea.
 CREATE TABLE `relacionar` (
-  `id_evento` int(11) NOT NULL,
+  `id_evento` int NOT NULL,
   `actividad` varchar(45) NOT NULL,
+  `id_relacionar` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_relacionar`),
   KEY `relacionarfk1_idx` (`id_evento`),
   CONSTRAINT `relacionarfk1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 --Tabla tener que nos indica que tipod de eventos tenemos en un evento.
 --Cuenta con dos atributos, ambos llaves foráneas.
 CREATE TABLE `tener` (
-  `id_tipo` int(11) DEFAULT NULL,
-  `id_evento` int(11) NOT NULL,
+  `id_tipo` int DEFAULT NULL,
+  `id_evento` int NOT NULL,
+  `id_tener` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_tener`),
   KEY `tenerfk1_idx` (`id_tipo`),
   KEY `tenerfk2_idx` (`id_evento`),
   CONSTRAINT `tenerfk1` FOREIGN KEY (`id_tipo`) REFERENCES `tipo_evento` (`id_tipo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tenerfk2` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
