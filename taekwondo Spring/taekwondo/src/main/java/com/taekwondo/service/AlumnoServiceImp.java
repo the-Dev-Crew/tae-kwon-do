@@ -1,5 +1,6 @@
 package com.taekwondo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,17 @@ public class AlumnoServiceImp implements AlumnoService {
 	
 	@Autowired
 	private AlumnoRepository alumnoRepo;
+	@Autowired 
+	private UsuarioService uService;
 	
 	@Override
 	public List<Alumno> getAlumnos() {
-		return alumnoRepo.findAll();
+		List<Integer> ids = alumnoRepo.getAlumnos();
+		List<Alumno> alumnos = new ArrayList<Alumno>();
+		for(int id: ids) {
+			alumnos.add(alumnoRepo.findById(id).get());
+		}
+		return alumnos;
 	}
 
 	@Override
@@ -39,7 +47,8 @@ public class AlumnoServiceImp implements AlumnoService {
 
 	@Override
 	public void deleteAlumno(int id) {
-		alumnoRepo.deleteById(id);
+		Alumno a = alumnoRepo.findById(id).get();
+		uService.deleteUsuario(a.getUsername());
 		
 	}
 
