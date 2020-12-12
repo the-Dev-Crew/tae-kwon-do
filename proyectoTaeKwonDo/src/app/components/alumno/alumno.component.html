@@ -197,7 +197,7 @@
                     <div class="alumno-detalles-documentos caja-flex-vertical">
                         <img src="assets/img/karate.jpg">
                         <button (click)="openModalModificarAlumno(alumnoDetalles)">Modificar Alumno</button>
-                        <button (click)="deleteAlumno(alumnoDetalles.id)">Eliminar</button>
+                        <button (click)="deleteAlumno(alumnoDetalles.id)">Eliminar Alumno</button>
                     </div>
                 </div>
             </div>
@@ -321,7 +321,9 @@
 
                     <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
 
-                    <button class="btn btn-success btn-block">Guardar</button>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
                 </form>
             </div>
 
