@@ -67,6 +67,7 @@ export class ExamenComponent implements OnInit {
     this.examenService.getExamen(id_examen).subscribe(
       res => {
         this.examen = res;
+        this.examenDetalles = res;
       },
       err => console.error(err)
     )
