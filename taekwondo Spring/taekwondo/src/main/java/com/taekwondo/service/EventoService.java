@@ -12,4 +12,5 @@ public interface EventoService {
 	public abstract ResponseEntity<Object> createEvento(Evento e);
 	public abstract void updateEvento(int id, Evento e);
 	public abstract void deleteEvento(int id);
+	public abstract List<Evento> getEventosProximos();
 }

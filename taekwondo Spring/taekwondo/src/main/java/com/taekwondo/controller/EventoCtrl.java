@@ -31,6 +31,11 @@ public class EventoCtrl {
 		return eventoSrvc.getEventos();
 	}
 	
+	@GetMapping("/evento/proximos")
+	public List<Evento> getEventosProximos(){
+		return eventoSrvc.getEventosProximos();
+	}
+	
 	@GetMapping("/evento/{id}")
 	public ResponseEntity<Object> getEvento(@PathVariable int id){
 		return eventoSrvc.getEvento(id);
