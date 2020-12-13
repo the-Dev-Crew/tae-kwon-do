@@ -28,7 +28,7 @@
                 <tr *ngFor="let examen of examenes">
                     <td>{{ examen.nombre }}</td>
                     <td>{{ examen.costo }}</td>
-                    <td>{{ examen.fecha }}</td>
+                    <td>{{ examen.fecha.substring(0, 10) }}</td>
                     <td>{{ examen.actividad }}</td>
                     <td>{{ examen.grado }}</td>
                     <td><button (click)="openModalVerExamen(examen.id_examen)">Detalles</button></td>
@@ -140,6 +140,8 @@
                     <p>Fecha de aplicación:&nbsp;{{ examenDetalles.fecha }}</p>
                     <p>Actividad a la que pertenece el examen:&nbsp;{{ examenDetalles.actividad }}</p>
                     <p>Grado que califica:&nbsp;{{ examenDetalles.grado }}</p>
+                    <button (click)="openModalInscribirAlumno(examenDetalles)">Inscribir alumno</button>
+                    <br><br>
                     <div class="caja-flex-horizontal">
                         <button (click)="openModalModificarExamen(examenDetalles)">Modificar</button>
                         <button (click)="deleteExamen(examenDetalles.id_examen)">Eliminar</button>
@@ -219,6 +221,39 @@
             <div class="modal-footer">
             </div>
         
+        </div>
+    </div>
+</div>
+
+<!--openModalInscribirAlumno(examenDetalles)-->
+
+<div class="modal" id="inscribirAlumno">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header"> 
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <form [formGroup]="inscribirAlumnoForm">
+
+                    <div class="form-group">
+                        <label for="id_Alumno">ID Alumno<span class="text-danger">*</span></label>
+                        <input type="number" min="0" formControlName="id_Alumno" class="form-control" [ngClass]="{ 'is-invalid': submitted && fee.id_Alumno.errors }" />
+                        <div *ngIf="submitted && fee.id_Alumno.errors" class="invalid-feedback">
+                            <div *ngIf="fee.id_Alumno.errors.required">El id del alumno a inscribir es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>

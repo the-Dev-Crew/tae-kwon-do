@@ -52,6 +52,7 @@ public class PresentarCtrl {
 	}
 	
 	
+	//Crea una nueva tupla en la tabla 
 	@PostMapping("/presentar")
 	public ResponseEntity<Object> createPresentar(@Valid @RequestBody Presentar p){
 		presentarSrvc.createPresentar(p);

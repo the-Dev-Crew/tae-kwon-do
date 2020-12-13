@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Examen } from '../../_models/examen';
+import { Presentar } from '../../_models/presentar';
 import { ExamenService } from '../../_services/examen.service';
 
 import { FormBuilder, Validators,FormGroup } from '@angular/forms';
@@ -19,6 +20,7 @@ export class ExamenComponent implements OnInit {
   examenDetalles: Examen | any;
   examenForm: FormGroup;
   editarExamenForm: FormGroup;
+  inscribirAlumnoForm: FormGroup; 
   submitted = false;
 
   constructor(private examenService:ExamenService, private formBuilder: FormBuilder) { }
@@ -43,6 +45,10 @@ export class ExamenComponent implements OnInit {
       fecha: ['', Validators.required],
       actividad: ['', Validators.required],
       grado: ['', Validators.required]
+    });
+    this.inscribirAlumnoForm = this.formBuilder.group({
+      id_Alumno: ['', Validators.required],
+      id_examen:['', Validators.required]
     });
     this.getExamenes();
   }
@@ -130,6 +136,7 @@ export class ExamenComponent implements OnInit {
   //No me acuerdo para que son estas funciones.
   get f() { return this.examenForm.controls;}
   get fe() { return this.editarExamenForm.controls;}
+  get fee() { return this.inscribirAlumnoForm.controls;}
 
   //Modal para crear examen.
   openModalExamen(){
@@ -156,5 +163,9 @@ export class ExamenComponent implements OnInit {
       grado: [examen.grado],
     });
     $("#modificarExamen").modal("show");
+  }
+
+  openModalInscribirAlumno(examen){
+    $("inscribirAlumno").modal("show");
   }
 }

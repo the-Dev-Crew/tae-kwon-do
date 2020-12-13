@@ -139,6 +139,8 @@
                     <p>Fecha de fin/clausura del evento:&nbsp;</p>
                     <p>Costo por entrada:&nbsp;${{ eventoDetalles.costo }}</p>
                     <p>Descripción:&nbsp;{{ eventoDetalles.descripcion }}</p>
+                    <button>Inscribir Alumno</button>
+                    <br><br>
                     <div class="caja-flex-horizontal">
                         <button (click)="openModalModificarEvento(eventoDetalles)">Modificar</button>
                         <button (click)="deleteEvento(eventoDetalles.id_evento)">Eliminar</button>
