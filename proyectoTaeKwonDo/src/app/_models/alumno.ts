@@ -1,7 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 
 export class Alumno{
-    id: number;
+    id_Alumno: number;
     nombre: string;
     a_paterno: string;
     a_materno: string;
@@ -16,7 +16,7 @@ export class Alumno{
     
 
     constructor(id, nombre, a_paterno, a_materno, fotografia, fecha_nacimiento, seguro_medico, certificado_medico, carta_responsiva, actividad, grado, username){
-        this.id = id;
+        this.id_Alumno = id;
         this.nombre = nombre;
         this.a_paterno = a_paterno;
         this.a_materno = a_materno;

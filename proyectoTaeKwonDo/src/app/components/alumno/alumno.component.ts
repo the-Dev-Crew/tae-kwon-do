@@ -40,6 +40,7 @@ export class AlumnoComponent implements OnInit {
       username: ['', Validators.required]
     });
     this.editarAlumnoForm = this.formBuilder.group({
+      id_Alumno: [''],
       nombre: ['', Validators.required],
       a_paterno: ['', Validators.required],
       a_materno: ['', Validators.required],
@@ -124,6 +125,21 @@ export class AlumnoComponent implements OnInit {
       return;
     }
 
+
+    let aux: Alumno = this.editarAlumnoForm.value;
+    console.log("id " + aux.id_Alumno);
+    console.log("nombre " + aux.nombre);
+    console.log("Apellido paterno " + aux.a_paterno);
+    console.log("Apellido materno " + aux.a_materno);
+    console.log("fotografia " + aux.fotografia);
+    console.log("fecha de nacimiento  " + aux.fecha_nacimiento);
+    console.log("seguro medico " + aux.seguro_medico);
+    console.log("Carta responsiva " + aux.carta_responsiva);
+    console.log("actividad " + aux.actividad);
+    console.log("Grado " + aux.grado);
+    console.log("Username " + aux.username);
+
+
     this.alumnoService.updateAlumno(this.editarAlumnoForm.value).subscribe(
       res => {
         this.getAlumnos();
@@ -152,6 +168,7 @@ export class AlumnoComponent implements OnInit {
   openModalModificarAlumno(alumno){
     this.editarAlumnoForm.reset();
     this.editarAlumnoForm.setValue({
+      id_Alumno: [alumno.id_Alumno],
       nombre: [alumno.nombre],
       a_paterno: [alumno.a_paterno],
       a_materno: [alumno.a_materno],
@@ -166,5 +183,8 @@ export class AlumnoComponent implements OnInit {
     });
     
     $("#modificarAlumno").modal("show");
+
+     // this.updateAlumno();
+
   }
 }
