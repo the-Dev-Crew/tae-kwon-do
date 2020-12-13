@@ -84,7 +84,7 @@ export class AlumnoComponent implements OnInit {
   }
 
   // Eliminar un alumno
-  deleteExamen(id){
+  deleteAlumno(id){
     this.alumnoService.deleteAlumno(id).subscribe(
       res => {
         this.getAlumnos();
