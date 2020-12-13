@@ -48,7 +48,8 @@ export class ExamenComponent implements OnInit {
       grado: ['', Validators.required]
     });
     this.inscribirAlumnoForm = this.formBuilder.group({
-      id_Alumno: ['', Validators.required],
+      id_presentar: [''],
+      id_alumno: ['', Validators.required],
       id_examen:['', Validators.required]
     });
     this.getExamenes();
@@ -144,10 +145,12 @@ export class ExamenComponent implements OnInit {
     }
 
     let aux: Presentar = this.inscribirAlumnoForm.value;
+    console.log('id_presentar: '+ aux.id_presentar);
     console.log('id_Alumno: '+ aux.id_alumno);
     console.log('id_examen: ' + aux.id_examen);
     $("#inscribirAlumno").modal("hide");
-    this.presentarService.createPresentar(aux).subscribe(
+
+    this.presentarService.createPresentar(this.inscribirAlumnoForm.value).subscribe(
       res => {
         $("#inscribirAlumno").modal("hide");
         this.getExamenes();
@@ -191,7 +194,8 @@ export class ExamenComponent implements OnInit {
   openModalInscribirAlumno(examen){
     this.inscribirAlumnoForm.reset();
     this.inscribirAlumnoForm.setValue({
-      id_Alumno: [''],
+      id_presentar: [''],
+      id_alumno: [''],
       id_examen: [examen.id_examen],
     });
     $("#inscribirAlumno").modal("show");
