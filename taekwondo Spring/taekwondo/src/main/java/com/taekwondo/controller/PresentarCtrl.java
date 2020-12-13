@@ -61,6 +61,18 @@ public class PresentarCtrl {
 		response.put("message","Presentacion de examen  creada exitosamente");
 		return new ResponseEntity<>(response,HttpStatus.CREATED);
 	}
+	@PostMapping("/presentar/{id_examen}/{id_alumno}")
+	public ResponseEntity<Object> createPresentar(@PathVariable int id_alumno, @PathVariable int id_examen){
+		Presentar p = new Presentar();
+		p.setId_alumno(id_alumno);
+		p.setId_examen(id_examen);
+		presentarSrvc.createPresentar(p);
+		
+		HashMap<String,String> response = new HashMap<>();
+		response.put("status","success");
+		response.put("message","Presentacion de examen  creada exitosamente");
+		return new ResponseEntity<>(response,HttpStatus.CREATED);
+	}
 	
 	//borra el registro presentado con id dado
 	@DeleteMapping("/presentar/{id}")
