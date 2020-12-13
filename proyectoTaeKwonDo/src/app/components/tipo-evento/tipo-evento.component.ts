@@ -101,7 +101,7 @@ export class TipoEventoComponent implements OnInit {
     console.log('Descripcion del tipo  evento: ' + aux.descripcion);
     $("#editarTipoEventoModal").modal("hide");
 
-    this.tipoEventoService.updateTipo_Evento(aux).subscribe(
+    this.tipoEventoService.updateTipo_Evento( this.editarTipoEventoForm.value).subscribe(
       res => {
         $("#editarTipoEventoModal").modal("hide");
         this.getTipos_Evento();

@@ -30,7 +30,6 @@ public class Tipo_EventoServiceImp implements Tipo_EventoService {
 
 	public void updateTipo_Evento(int id, Tipo_Evento te) {
 		repoTipoE.save(te);
-		
 	}
 
 	public void deleteTipo_Evento(int id) {
