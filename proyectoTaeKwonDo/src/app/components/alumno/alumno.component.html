@@ -18,6 +18,7 @@
         <table>
             <thead class="thead">
                 <tr>
+                    <th>Id</th>
                     <th>Nombre</th>
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
@@ -28,7 +29,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let alumno of alumnos">
-                    <td hidden>{{ alumno.id }}</td>
+                    <td>{{ alumno.id_Alumno }}</td>
                     <td>{{ alumno.nombre }}</td>
                     <td>{{ alumno.a_paterno }}</td>
                     <td>{{ alumno.a_materno }}</td>
@@ -183,6 +184,7 @@
             <div class="modal-body">
                 <div class="caja-flex-horizontal" *ngIf="alumnoDetalles">
                     <div class="alumno-detalles-datos">
+                        <p>Id: {{ alumnoDetalles.id_Alumno}}</p>
                         <p>Nombre completo: {{ alumnoDetalles.nombre }}&nbsp;{{ alumnoDetalles.a_paterno }}&nbsp;{{ alumnoDetalles.a_materno }}</p>
                         <p>Fecha de nacimiento: {{ alumnoDetalles.fecha_nacimiento.substring(0, 10) }}</p>
                         <p>Clave del Seguro Médico: {{ alumnoDetalles.seguro_medico }}</p>
@@ -197,7 +199,7 @@
                     <div class="alumno-detalles-documentos caja-flex-vertical">
                         <img src="assets/img/karate.jpg">
                         <button (click)="openModalModificarAlumno(alumnoDetalles)">Modificar Alumno</button>
-                        <button (click)="deleteAlumno(alumnoDetalles.id)">Eliminar Alumno</button>
+                        <button (click)="deleteAlumno(alumnoDetalles.id)">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -219,6 +221,15 @@
             <!--Body-->
             <div class="modal-body">
                 <form [formGroup]="editarAlumnoForm" (ngSubmit)="updateAlumno()">
+                     <!--Input id-->
+                    <div class="form-group">
+                        <label for="id"><span class="text-danger"></span></label>
+                        <input type="number" formControlName="id_Alumno" type="hidden" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.id_Alumno.errors }">
+                            <div *ngIf="submitted && fe.id_Alumno.errors" class="invalid-feedback">
+                            <div *ngIf="fe.id_Alumno.errors.required">El id del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    
                     <!--Input Nombre-->
                     <div class="form-group">
                         <label for="nombre">Nombre<span class="text-danger">*</span></label>
@@ -321,9 +332,7 @@
 
                     <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
 
-                    <div>
-                        <button class="btn btn-success btn-block">Guardar</button>
-                    </div>
+                    <button class="btn btn-success btn-block">Guardar</button>
                 </form>
             </div>
 
