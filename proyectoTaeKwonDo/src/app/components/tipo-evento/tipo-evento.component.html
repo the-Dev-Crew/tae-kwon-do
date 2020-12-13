@@ -19,15 +19,15 @@
         </thead>
         <tbody>
             <tr *ngFor="let tipoevento of tiposEvento">
-                <td class="text-center">{{ tipoevento.id }}</td>
+                <td class="text-center">{{ tipoevento.id_tipo }}</td>
                 <td class="text-center">{{ tipoevento.nombre }}</td>
                 <td class="text-center">{{ tipoevento.descripcion }}</td>
 
                 <td>
                     <div>
-                        <button (click)="updateTipoEvento(tipoevento)" type="button">Editar </button>
+                        <button (click)="openModalEditarTipoEvento(tipoevento)" type="button">Editar </button>
                         &nbsp;&nbsp;
-                        <button (click)="deleteTipoEvento(tipoevento.id)" type="button">Eliminar </button>
+                        <button (click)="deleteTipo_Evento(tipoevento.id_tipo)" type="button">Eliminar </button>
                     </div>
                 </td>
             </tr>
@@ -61,6 +61,53 @@
                         <textarea rows="3" formControlName="descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }"></textarea>
                         <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
                           <div *ngIf="f.descripcion.errors.required">La descripcion del evento es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="editarTipoEventoModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Editar tipo de Evento</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="editarTipoEventoForm" (ngSubmit)="updateTipo_Evento()">
+                    <div class="form-group">
+                        <label for="id_tipo"><span class="text-danger">*</span></label>
+                        <input type="number" formControlName="id_tipo" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.id_tipo.errors }" >
+                        <div *ngIf="submitted && fe.id_tipo.errors" class="invalid-feedback">
+                            <div *ngIf="fe.id_tipo.errors.required">El id_tipo del tipo de evento es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.nombre.errors }" >
+                        <div *ngIf="submitted && fe.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="fe.nombre.errors.required">El nombre del tipo de evento es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcion">Descripción*</label>
+                        <textarea rows="3" formControlName="descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.descripcion.errors }"></textarea>
+                        <div *ngIf="submitted && fe.descripcion.errors" class="invalid-feedback">
+                          <div *ngIf="fe.descripcion.errors.required">La descripcion del evento es obligatoria</div>
                         </div>
                     </div>
 

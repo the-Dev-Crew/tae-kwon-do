@@ -24,12 +24,12 @@ export class TipoEventoComponent implements OnInit {
   ngOnInit(): void {
     //inicie el formulario vacio
     this.tipoEventoForm = this.formBuilder.group({
-      id: [''],
+      //id_tipo: [''],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required]
     });
     this.editarTipoEventoForm =this.formBuilder.group({
-      id: [''],
+      id_tipo: [''],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required]
     });
@@ -96,11 +96,12 @@ export class TipoEventoComponent implements OnInit {
     }
 
     let aux: Tipo_Evento = this.editarTipoEventoForm.value;
-    console.log('Nombre del evento: ' + aux.nombre);
-    console.log('Descripcion del evento: ' + aux.descripcion);
+    console.log('Id del evento: ' + aux.id_tipo);
+    console.log('Nombre del tipo evento: ' + aux.nombre);
+    console.log('Descripcion del tipo  evento: ' + aux.descripcion);
     $("#editarTipoEventoModal").modal("hide");
 
-    this.tipoEventoService.updateTipo_Evento(this.editarTipoEventoForm.value).subscribe(
+    this.tipoEventoService.updateTipo_Evento(aux).subscribe(
       res => {
         $("#editarTipoEventoModal").modal("hide");
         this.getTipos_Evento();
@@ -122,11 +123,11 @@ export class TipoEventoComponent implements OnInit {
   openModalEditarTipoEvento(tipoEvento){
     this.editarTipoEventoForm.reset();
     this.editarTipoEventoForm.setValue({
-      id: [tipoEvento.id],
+      id_tipo: [tipoEvento.id_tipo],
       nombre: [tipoEvento.nombre],
       descripcion: [tipoEvento.descripcion],
     });
-    $("#editarTipoUsuarioModal").modal("show");
+    $("#editarTipoEventoModal").modal("show");
   }
 
 }

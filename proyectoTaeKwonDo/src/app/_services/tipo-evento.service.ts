@@ -24,7 +24,7 @@ export class TipoEventoService {
   }
 
   updateTipo_Evento(tipoE: Tipo_Evento){
-    return this.http.put(this.API_URI + '/tipo_evento/' + tipoE.id, tipoE);
+    return this.http.put(this.API_URI + '/tipo_evento/' + tipoE.id_tipo, tipoE);
   }
 
   deleteTipo_Evento(id: number){
