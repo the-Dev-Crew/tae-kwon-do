@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Examen } from '../../_models/examen';
 import { Presentar } from '../../_models/presentar';
 import { ExamenService } from '../../_services/examen.service';
+import { PresentarService } from '../../_services/presentar.service';
 
 import { FormBuilder, Validators,FormGroup } from '@angular/forms';
 
@@ -23,7 +24,7 @@ export class ExamenComponent implements OnInit {
   inscribirAlumnoForm: FormGroup; 
   submitted = false;
 
-  constructor(private examenService:ExamenService, private formBuilder: FormBuilder) { }
+  constructor(private examenService:ExamenService, private presentarService:PresentarService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     //iniciamos el formulario vacío para nuevo examen
@@ -133,6 +134,28 @@ export class ExamenComponent implements OnInit {
     )
   }
 
+  //Aquí creamos el objeto presentar para agregar la participación de un alumno en un examen 
+  createPresentar(){
+    this.submitted = true;
+
+    if(this.inscribirAlumnoForm.invalid){
+      console.log('Formulario inválido');
+      return;
+    }
+
+    let aux: Presentar = this.inscribirAlumnoForm.value;
+    console.log('id_Alumno: '+ aux.id_alumno);
+    console.log('id_examen: ' + aux.id_examen);
+    $("#inscribirAlumno").modal("hide");
+    this.presentarService.createPresentar(aux).subscribe(
+      res => {
+        $("#inscribirAlumno").modal("hide");
+        this.getExamenes();
+      },
+      err => console.error(err)
+    )
+  }
+
   //No me acuerdo para que son estas funciones.
   get f() { return this.examenForm.controls;}
   get fe() { return this.editarExamenForm.controls;}
@@ -166,6 +189,12 @@ export class ExamenComponent implements OnInit {
   }
 
   openModalInscribirAlumno(examen){
-    $("inscribirAlumno").modal("show");
+    this.inscribirAlumnoForm.reset();
+    this.inscribirAlumnoForm.setValue({
+      id_Alumno: [''],
+      id_examen: [examen.id_examen],
+    });
+    $("#inscribirAlumno").modal("show");
+    $("#verExamenModal").modal("hide");
   }
 }

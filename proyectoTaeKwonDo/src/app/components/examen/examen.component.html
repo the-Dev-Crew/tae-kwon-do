@@ -140,7 +140,7 @@
                     <p>Fecha de aplicación:&nbsp;{{ examenDetalles.fecha }}</p>
                     <p>Actividad a la que pertenece el examen:&nbsp;{{ examenDetalles.actividad }}</p>
                     <p>Grado que califica:&nbsp;{{ examenDetalles.grado }}</p>
-                    <button (click)="openModalInscribirAlumno(examenDetalles)">Inscribir alumno</button>
+                    <button (click)="openModalInscribirAlumno(examenDetalles)">Inscribir Alumno</button>
                     <br><br>
                     <div class="caja-flex-horizontal">
                         <button (click)="openModalModificarExamen(examenDetalles)">Modificar</button>
@@ -232,18 +232,20 @@
         <div class="modal-content">
 
             <!--Header-->
-            <div class="modal-header"> 
+            <div class="modal-header">
+                <h4 class="modal-title">Inscribir Alumno</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!--Body-->
             <div class="modal-body">
-                <form [formGroup]="inscribirAlumnoForm">
-
+                <form [formGroup]="inscribirAlumnoForm" (ngSubmit)="createPresentar()">
+                    
                     <div class="form-group">
-                        <label for="id_Alumno">ID Alumno<span class="text-danger">*</span></label>
+                        <label for="id_Alumno">ID del Alumno<span class="text-danger">*</span></label>
                         <input type="number" min="0" formControlName="id_Alumno" class="form-control" [ngClass]="{ 'is-invalid': submitted && fee.id_Alumno.errors }" />
                         <div *ngIf="submitted && fee.id_Alumno.errors" class="invalid-feedback">
-                            <div *ngIf="fee.id_Alumno.errors.required">El id del alumno a inscribir es obligatorio</div>
+                        <div *ngIf="fee.id_Alumno.errors.required">El ID del alumno es obligatrio</div>
                         </div>
                     </div>
 
