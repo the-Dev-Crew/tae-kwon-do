@@ -22,7 +22,7 @@ export class PresentarService {
   }
 
   getAlumnosPresentados(id_examen: number){
-    return this.http.get(this.API_URI+'/presentar/examen/'+id_examen)
+    return this.http.get(this.API_URI+'/presentar/examen/'+id_examen);
   }
 
   createPresentar(presentar: Presentar){
