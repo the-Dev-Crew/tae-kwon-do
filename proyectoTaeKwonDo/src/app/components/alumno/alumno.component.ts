@@ -104,7 +104,17 @@ export class AlumnoComponent implements OnInit {
     }
 
     let aux: Alumno = this.alumnoForm.value;
-    console.log("fecha" + aux.fotografia);
+    console.log("id " + aux.id_Alumno);
+    console.log("nombre " + aux.nombre);
+    console.log("Apellido paterno " + aux.a_paterno);
+    console.log("Apellido materno " + aux.a_materno);
+    console.log("fotografia " + aux.fotografia);
+    console.log("fecha de nacimiento  " + aux.fecha_nacimiento);
+    console.log("seguro medico " + aux.seguro_medico);
+    console.log("Carta responsiva " + aux.carta_responsiva);
+    console.log("actividad " + aux.actividad);
+    console.log("Grado " + aux.grado);
+    console.log("Username " + aux.username);
     $("#alumnoModal").modal("hide");
 
     this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(
