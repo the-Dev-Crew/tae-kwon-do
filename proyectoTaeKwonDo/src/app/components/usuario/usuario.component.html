@@ -1,0 +1,140 @@
+<div class="container-fluid">
+    <div class="card mb-3">
+        <!-- Header  -->
+        <div class="card-header">
+            <h3><i class="fas fa-users"></i>&nbsp;&nbsp;Usuarios Registrados</h3>
+            <button style="float: right;" (click)="openModalUsuario()" type="button" class="btn btn-info btn-sm"> Registrar <i class="fas fa-user-plus"></i>
+            </button>
+        </div>
+
+        <!-- Body  -->
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Usuario</th>
+                        <th class="text-center">tipo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <td class="text-center">{{ usuario.usuario }}</td>
+                        <td class="text-center">{{ usuario.tipo_usuario }}</td>
+
+                        <td>
+                            <div>
+                                <button (click)="openModalEditarUsuario(usuario)" type="button" class="btn btn-primary">Editar <i class="fas fa-pen-square"></i></button>
+                                &nbsp;&nbsp;
+                                <button (click)="deleteUsuario(usuario.username)" type="button" class="btn btn-danger">Eliminar <i class="fas fa-ban"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<br><br>
+
+<div class="modal" id="usuarioModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Registrar Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="usuarioForm" (ngSubmit)="createUsuario()">
+                    <div class="form-group">
+                        <label for="username">Usuario<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">El nombre de usuario es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passsword">Password<span class="text-danger">*</span></label>
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">La contraseña es obligatria</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_usuario">Tipo<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="tipo_usuario" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipo_usuario.errors }" />
+                        <div *ngIf="submitted && f.tipo_usuario.errors" class="invalid-feedback">
+                        <div *ngIf="f.tipo_usuario.errors.required">El tipo es obligatrio</div>
+                        </div>
+                    </div>
+
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="editarUsuarioModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="editarUsuarioForm" (ngSubmit)="updateUsuario()">
+                    <div class="form-group">
+                        <label for="username">Usuario<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.username.errors }" >
+                        <div *ngIf="submitted && fe.username.errors" class="invalid-feedback">
+                            <div *ngIf="fe.username.errors.required">El nombre de usuario es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passsword">Password<span class="text-danger">*</span></label>
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.password.errors }" />
+                        <div *ngIf="submitted && fe.password.errors" class="invalid-feedback">
+                        <div *ngIf="fe.password.errors.required">La contraseña es obligatria</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_usuario">Tipo<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="tipo_usuario" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.tipo_usuario.errors }" />
+                        <div *ngIf="submitted && fe.tipo_usuario.errors" class="invalid-feedback">
+                        <div *ngIf="fe.tipo_usuario.errors.required">El tipo es obligatrio</div>
+                        </div>
+                    </div>
+
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        
+        </div>
+    </div>
+</div>

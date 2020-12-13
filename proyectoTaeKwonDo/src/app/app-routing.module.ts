@@ -4,6 +4,7 @@ import { AlumnoComponent } from './components/alumno/alumno.component';
 import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
 import { EventoComponent } from './components/evento/evento.component';
 import { ExamenComponent } from './components/examen/examen.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 import { IndexComponent } from './components/index/index.component';
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'tipo_evento', component: TipoEventoComponent},
   { path: 'evento', component: EventoComponent},
   { path: 'examen', component: ExamenComponent},
+  { path: 'usuario', component: UsuarioComponent},
 
   { path: '**', redirectTo: ''}
 ];

@@ -12,6 +12,7 @@ import { IndexComponent } from './components/index/index.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 
 
@@ -24,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     EventoComponent,
     ExamenComponent,
     IndexComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,
