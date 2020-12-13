@@ -84,10 +84,10 @@ export class AlumnoComponent implements OnInit {
   }
 
   // Eliminar un alumno
-  deleteExamen(id){
+  deleteAlumno(id: number){
     this.alumnoService.deleteAlumno(id).subscribe(
       res => {
-        this.getAlumnos();
+        this.getAlumnos()
         $("#verAlumnoModal").modal("hide");
       },
       err => console.error(err)
@@ -125,6 +125,7 @@ export class AlumnoComponent implements OnInit {
       return;
     }
 
+
     let aux: Alumno = this.editarAlumnoForm.value;
     console.log("id " + aux.id_Alumno);
     console.log("nombre " + aux.nombre);
@@ -139,10 +140,8 @@ export class AlumnoComponent implements OnInit {
     console.log("Username " + aux.username);
 
 
-
     this.alumnoService.updateAlumno(this.editarAlumnoForm.value).subscribe(
       res => {
-        $("#editarAlumnoModal").modal("hide");
         this.getAlumnos();
       },
       err => console.error(err)
@@ -167,7 +166,6 @@ export class AlumnoComponent implements OnInit {
 
   //Ventana para modificar un alumno.
   openModalModificarAlumno(alumno){
-    this.submitted = false;
     this.editarAlumnoForm.reset();
     this.editarAlumnoForm.setValue({
       id_Alumno: [alumno.id_Alumno],
@@ -175,7 +173,7 @@ export class AlumnoComponent implements OnInit {
       a_paterno: [alumno.a_paterno],
       a_materno: [alumno.a_materno],
       fotografia: [''],
-      fecha_nacimiento: [alumno.fecha_nacimiento.substring(0, 10)],
+      fecha_nacimiento: [alumno.fecha_nacimiento],
       seguro_medico: [alumno.seguro_medico],
       certificado_medico: [''],
       carta_responsiva: [''],
@@ -185,6 +183,8 @@ export class AlumnoComponent implements OnInit {
     });
     
     $("#modificarAlumno").modal("show");
+
      // this.updateAlumno();
+
   }
 }

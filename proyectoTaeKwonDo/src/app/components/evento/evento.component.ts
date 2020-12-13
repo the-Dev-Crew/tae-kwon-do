@@ -120,16 +120,8 @@ export class EventoComponent implements OnInit {
       return;
     }
 
-    let aux: Evento = this.eventoForm.value;
-    console.log('Nuevo Evento: '+ aux.nombre);
-    console.log('Fecha de Inicio: '+ aux.fecha_inicio);
-    console.log('Fecha de Fin: '+ aux.fecha_fin);
-    console.log('Costo: '+ aux.costo);
-    console.log('Descripcion: '+ aux.descripcion);
-
-    this.eventoService.updateEvento(aux).subscribe(
+    this.eventoService.updateEvento(this.editarEventoForm.value).subscribe(
       res => {
-        $("#editarEventoModal").modal("hide");
         this.getEventos();
       },
       err => console.error(err)
@@ -154,7 +146,6 @@ export class EventoComponent implements OnInit {
 
   //Modal para editar un evento.
   openModalModificarEvento(evento){
-    this.submitted = false;
     this.editarEventoForm.reset();
     this.editarEventoForm.setValue({
       id_evento: [evento.id_evento],
