@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Examen } from '../../_models/examen';
 import { Presentar } from '../../_models/presentar';
+import { Alumno } from '../../_models/alumno';
 import { ExamenService } from '../../_services/examen.service';
 import { PresentarService } from '../../_services/presentar.service';
 
@@ -18,6 +19,7 @@ export class ExamenComponent implements OnInit {
 
   examenes: Examen[] | any;
   examen: Examen | any;
+  alumnos: Alumno[] | any;
   examenDetalles: Examen | any;
   examenForm: FormGroup;
   editarExamenForm: FormGroup;
@@ -157,6 +159,14 @@ export class ExamenComponent implements OnInit {
       err => console.error(err)
     )
   }
+  delete(examen, alumno){
+    this.presentarService.deletePresentar(alumno.id_Alumno, examen.id_examen).subscribe(
+      res => {
+        this.openModalVerExamen(examen);
+      },
+      err => console.error(err)
+    )
+  }
 
   //No me acuerdo para que son estas funciones.
   get f() { return this.examenForm.controls;}
@@ -174,6 +184,14 @@ export class ExamenComponent implements OnInit {
   openModalVerExamen(examen){
     this.submitted = false;
     this.examenDetalles = examen;
+    this.alumnos = null;
+    this.presentarService.getAlumnosPresentados(examen.id_examen).subscribe(
+      res => {
+        this.alumnos = res;
+      },
+      err => console.error(err)
+    )
+
     $("#verExamenModal").modal("show");
   }
 
