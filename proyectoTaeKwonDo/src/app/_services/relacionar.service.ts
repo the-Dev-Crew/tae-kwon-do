@@ -22,7 +22,7 @@ export class RelacionarService {
     return this.http.get(this.API_URI+'/relacionar/evento/'+ id_evento);
   }
 
-  createTener(relacionar: Relacionar){
+  createRelacionar(relacionar: Relacionar){
     return this.http.post(this.API_URI+'/relacionar', relacionar);
   }
 

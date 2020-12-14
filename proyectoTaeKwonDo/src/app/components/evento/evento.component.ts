@@ -29,10 +29,12 @@ export class EventoComponent implements OnInit {
   editarEventoForm: FormGroup;
   inscribirAlumnoForm: FormGroup;
   agregarTipoEventoForm: FormGroup;
+  actividadesForm: FormGroup;
   submitted = false;
   alumnos: Alumno[] | any;
   tipos: Tipo_Evento[] | any;
   actividades: string[] | any;
+  actividadesBoolean: boolean[] | any;
 
   constructor(private eventoService:EventoService, private relacionarService:RelacionarService, private participaService:ParticipaService, private tenerService:TenerService, private formBuilder:FormBuilder) { }
 
@@ -69,6 +71,11 @@ export class EventoComponent implements OnInit {
       id_evento: ['', Validators.required],
       id_tipo: ['', Validators.required]
     });
+    this.actividadesForm = this.formBuilder.group({
+      taekwondo : '',
+      kickboxing : '',
+      acondicionamiento: ''
+    })
     this.getEventos();
   }
 
@@ -206,6 +213,43 @@ export class EventoComponent implements OnInit {
     )
   }
 
+  cambiarActividades(){
+    var sel=[],nosel=[];
+    $('form input:checkbox').map(function(){
+      if($(this).prop('checked')){
+        sel.push($(this).attr('id'));
+    }else{
+        nosel.push($(this).attr('id'));
+    }
+    })
+    this.relacionarService.deleteRelacionar(this.eventoDetalles.id_evento, "taekwondo").subscribe(
+      res => {
+      },
+      err => console.error(err)
+    )
+    this.relacionarService.deleteRelacionar(this.eventoDetalles.id_evento, "kickboxing").subscribe(
+      res => {
+      },
+
+    )
+    this.relacionarService.deleteRelacionar(this.eventoDetalles.id_evento, "acondicionamiento").subscribe(
+      res => {
+      },
+
+    )
+    for(let i = 0;  i < sel.length; i++){
+      let aux: Relacionar = {id_relacionar:null, id_evento:this.eventoDetalles.id_evento, actividad: sel[i]};
+      this.relacionarService.createRelacionar(aux).subscribe(
+        res => {
+          this.openModalVerEvento(this.eventoDetalles);
+        },
+      )
+    }
+    $("#actividadesModal").modal("hide");
+
+
+  }
+
   delete(evento, alumno){
     this.participaService.deleteParticipa(alumno.id_Alumno, evento.id_evento).subscribe(
       res => {
@@ -293,6 +337,17 @@ export class EventoComponent implements OnInit {
       id_tipo: '',
     });
     $("#agregarTipoEvento").modal("show");
+    $("#verEventoModal").modal("hide");
+  }
+  openModalActividades(eventoDetalles){
+    this.submitted = false;
+    this.actividadesForm.reset();
+    this.actividadesForm.setValue({
+      taekwondo : '',
+      kickboxing : '',
+      acondicionamiento: ''
+    });
+    $("#actividadesModal").modal("show");
     $("#verEventoModal").modal("hide");
   }
 }

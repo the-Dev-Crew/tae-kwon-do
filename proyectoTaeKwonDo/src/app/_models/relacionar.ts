@@ -3,8 +3,7 @@ export class Relacionar{
     id_evento: number;
     actividad: string;
 
-    constructor(id_relacionar, id_evento, actividad){
-        this.id_relacionar = id_relacionar;
+    constructor( id_evento, actividad){
         this.id_evento = id_evento;
         this.actividad = actividad;
     }
