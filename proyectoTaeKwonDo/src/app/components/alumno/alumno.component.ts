@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Alumno } from '../../_models/alumno';
+import { Examen } from '../../_models/examen';
 import { AlumnoService } from '../../_services/alumno.service';
+import { PresentarService } from '../../_services/presentar.service';
 
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -16,12 +18,13 @@ export class AlumnoComponent implements OnInit {
 
   alumnos: Alumno[] | any;
   alumno: Alumno | any;
+  examenes: Examen[] |any;
   alumnoDetalles: Alumno | any;
   alumnoForm: FormGroup;
   editarAlumnoForm: FormGroup;
   submitted = false;
 
-  constructor(private alumnoService: AlumnoService, private formBuilder: FormBuilder) { }
+  constructor(private alumnoService: AlumnoService, private presentarService: PresentarService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     //Inice el formulario.
@@ -173,6 +176,17 @@ export class AlumnoComponent implements OnInit {
   openModalVerAlumno(alumno){
     this.alumnoDetalles = alumno;
     $("#verAlumnoModal").modal("show");
+  }
+  openModalVerHistorialExamen(alumnoDetalles){
+    $("#verAlumnoModal").modal("hide");
+    this.examenes = null;
+    this.presentarService. getExamenesPresentados(alumnoDetalles.id_Alumno).subscribe(
+      res => {
+        this.examenes = res;
+      },
+      err => console.error(err)
+    )
+    $("#verHistorialExamenModal").modal("show");
   }
 
   //Ventana para modificar un alumno.

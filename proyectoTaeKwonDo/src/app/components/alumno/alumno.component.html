@@ -200,8 +200,51 @@
                         <img src="assets/img/karate.jpg">
                         <button (click)="openModalModificarAlumno(alumnoDetalles)">Modificar Alumno</button>
                         <button (click)="deleteAlumno(alumnoDetalles.id_Alumno)">Eliminar Alumno</button>
+                        <button (click)="openModalVerHistorialExamen(alumnoDetalles)">Ver Historial de Examen</button>
 
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal para ver los detalles de un alumno-->
+<div class="modal" id="verHistorialExamenModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Examenes presentados por el alumno</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="table nuestra-tabla">
+                    <!--Tabla que muestra a todos los alumnos registrados en el sistema-->
+                    <table>
+                        <thead class="thead">
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>fecha</th>
+                                <th>Actividad</th>
+                                <th>Grado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let examen of examenes">
+                                <td>{{ examen.id_examen }}</td>
+                                <td>{{ examen.nombre }}</td>
+                                <td>{{ examen.tipo }}</td>
+                                <td>{{ examen.fecha }}</td>
+                                <td>{{ examen.actividad }}</td>
+                                <td>{{ examen.grado }}</td>
+                                <td><button (click)="openModalVerAlumno(alumno)">Detalles</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
