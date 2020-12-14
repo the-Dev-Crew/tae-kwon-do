@@ -175,7 +175,7 @@
             <!--Body del modal-->
             <div class="modal-body">
                 <div class="caja-flex-horizontal">
-                <div *ngIf="eventoDetalles">
+                <div class="hijo-izq" *ngIf="eventoDetalles">
                     <div class="caja-flex-horizontal">
                         <button (click)="openModalModificarEvento(eventoDetalles)">Modificar</button>
                         <button (click)="deleteEvento(eventoDetalles.id_evento)">Eliminar</button>
@@ -197,29 +197,31 @@
                     <br><br>
                 </div>
                 
-                <div class="table nuestra-tabla">
-                    <div class="caja-flex-horizontal">
-                        <div>    </div>
-                        <button (click)="openModalInscribirAlumno(eventoDetalles.id_evento)">Inscribir Alumno al evento</button>
+                <div class="hijo-der">
+                    <div class="card-header contenido-tabla-header">
+                        <h4>Participantes</h4>
+                        <button (click)="openModalInscribirAlumno(eventoDetalles.id_evento)" style="float: right;" class="btn btn-info btn-sm">Inscribir Alumno</button>
                     </div>
                     <!--Tabla que muestra todos los eventos registrados en el sistema-->
-                    <table>
-                        <thead class="thead">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido Paterno</th>
-                                <th>Apellido Materno</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let alumno of alumnos">
-                                <td>{{ alumno.nombre }}</td>
-                                <td>{{ alumno.a_paterno }}</td>
-                                <td>{{ alumno.a_materno }}</td>
-                                <td><button (click)="delete(eventoDetalles, alumno)">eliminar</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="card-boy-mini table nuestra-tabla"> 
+                        <table>
+                            <thead class="thead">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido Paterno</th>
+                                    <th>Apellido Materno</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let alumno of alumnos">
+                                    <td>{{ alumno.nombre }}</td>
+                                    <td>{{ alumno.a_paterno }}</td>
+                                    <td>{{ alumno.a_materno }}</td>
+                                    <td><button (click)="delete(eventoDetalles, alumno)">eliminar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             
                 </div>

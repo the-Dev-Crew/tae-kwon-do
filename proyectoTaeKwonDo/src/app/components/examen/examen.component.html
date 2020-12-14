@@ -134,45 +134,47 @@
             <!--Body del modal-->
             <div class="modal-body">
                 <div class="caja-flex-horizontal">
-                <div *ngIf="examenDetalles">
-                    <p>Nombre del examen:&nbsp;{{ examenDetalles.nombre }}</p>
-                    <p>Costo por aplicación:&nbsp;{{ examenDetalles.costo }}</p>
-                    <p>Tipo de examen:&nbsp;{{ examenDetalles.tipo }}</p>
-                    <p>Fecha de aplicación:&nbsp;{{ examenDetalles.fecha }}</p>
-                    <p>Actividad a la que pertenece el examen:&nbsp;{{ examenDetalles.actividad }}</p>
-                    <p>Grado que califica:&nbsp;{{ examenDetalles.grado }}</p>
-                    <br><br>
-                    <div class="caja-flex-horizontal">
-                        <button (click)="openModalModificarExamen(examenDetalles)">Modificar</button>
-                        <button (click)="deleteExamen(examenDetalles.id_examen)">Eliminar</button>
+                    <div class="hijo-izq" *ngIf="examenDetalles">
+                        <p>Nombre del examen:&nbsp;{{ examenDetalles.nombre }}</p>
+                        <p>Costo por aplicación:&nbsp;{{ examenDetalles.costo }}</p>
+                        <p>Tipo de examen:&nbsp;{{ examenDetalles.tipo }}</p>
+                        <p>Fecha de aplicación:&nbsp;{{ examenDetalles.fecha }}</p>
+                        <p>Actividad a la que pertenece el examen:&nbsp;{{ examenDetalles.actividad }}</p>
+                        <p>Grado que califica:&nbsp;{{ examenDetalles.grado }}</p>
+                        <br><br>
+                        <div class="caja-flex-horizontal">
+                            <button (click)="openModalModificarExamen(examenDetalles)">Modificar</button>
+                            <button (click)="deleteExamen(examenDetalles.id_examen)">Eliminar</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="table nuestra-tabla">
-                    <!--Tabla que muestra todos los examenes registrados en el sistema-->
-                    <div class="caja-flex-horizontal">
-                        <div>   </div>
-                        <button (click)="openModalInscribirAlumno(examenDetalles.id_examen)">Inscribir Alumno</button>
+                    <div class="hijo-der">
+                        <!--Tabla que muestra todos los examenes registrados en el sistema-->
+                        <div class="card-header contenido-tabla-header">
+                            <h4>Participantes</h4>
+                            <button (click)="openModalInscribirAlumno(examenDetalles.id_examen)" style="float: right;" class="btn btn-info btn-sm">Inscribir Alumno</button>
+                        </div>
+                        <div class="card-boy-mini table nuestra-tabla">
+                            <table>
+                                <thead class="theader">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellido Paterno</th>
+                                        <th>Apellido Materno</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let alumno of alumnos">
+                                        <td>{{ alumno.nombre }}</td>
+                                        <td>{{ alumno.a_paterno }}</td>
+                                        <td>{{ alumno.a_materno }}</td>
+                                        <td><button (click)="delete(examenDetalles, alumno)">eliminar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <table>
-                        <thead class="theader">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido Paterno</th>
-                                <th>Apellido Materno</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let alumno of alumnos">
-                                <td>{{ alumno.nombre }}</td>
-                                <td>{{ alumno.a_paterno }}</td>
-                                <td>{{ alumno.a_materno }}</td>
-                                <td><button (click)="delete(examenDetalles, alumno)">eliminar</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
-            </div>
             </div>
         </div>
     </div>
