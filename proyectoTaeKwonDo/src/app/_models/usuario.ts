@@ -3,8 +3,8 @@ export class Usuario{
     password: String;
     tipo_usuario: number;
 
-    constructor(usuario, password, tipo_usuario){ 
-        this.username = usuario;
+    constructor(username, password, tipo_usuario){ 
+        this.username = username;
         this.password = password;
         this.tipo_usuario = tipo_usuario;
     }

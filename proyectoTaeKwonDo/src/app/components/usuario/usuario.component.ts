@@ -83,7 +83,7 @@ export class UsuarioComponent implements OnInit {
     console.log('tipo: ' + aux.tipo_usuario);
 
     $("#usuarioModal").modal("hide");
-    this.usuarioService.createUsuario(this.usuarioForm.value).subscribe(
+    this.usuarioService.createUsuario(aux).subscribe(
       res => {
         $("#usuarioModal").modal("hide");
         this.getUsuarios();
@@ -128,9 +128,9 @@ export class UsuarioComponent implements OnInit {
 
     this.editarUsuarioForm.reset();
     this.editarUsuarioForm.setValue({
-      username: [usuario.usuario],
-      password: [usuario.password],
-      tipo_usuario: [usuario.tipo_usuario],
+      username: usuario.usuario,
+      password: usuario.password,
+      tipo_usuario: usuario.tipo_usuario,
     });
     $("#editarUsuarioModal").modal("show");
   }
