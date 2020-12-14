@@ -128,8 +128,10 @@ export class ExamenComponent implements OnInit {
 
     this.examenService.updateExamen(this.editarExamenForm.value).subscribe(
       res => {
-        this.getExamenes();
         $("#modificarExamen").modal("hide");
+        this.getExamenes();
+        this.openModalVerExamen(this.editarExamenForm.value);
+        
       },
       err => console.error(err)
     )
@@ -152,7 +154,7 @@ export class ExamenComponent implements OnInit {
     this.presentarService.createPresentar(this.inscribirAlumnoForm.value).subscribe(
       res => {
         $("#inscribirAlumno").modal("hide");
-        this.getExamenes();
+        this.openModalVerExamen(this.examenDetalles);
       },
       err => console.error(err)
     )
