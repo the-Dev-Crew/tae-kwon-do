@@ -161,7 +161,7 @@ export class EventoComponent implements OnInit {
     }
 
     let aux: Participa = this.inscribirAlumnoForm.value;
-    console.log('id_participa: '+aux.id_participa);
+    //console.log('id_participa: '+aux.id_participa);
     console.log('id_alumno: '+aux.id_alumno);
     console.log('id_evento: '+aux.id_evento);
 

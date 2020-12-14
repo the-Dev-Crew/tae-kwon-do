@@ -133,6 +133,7 @@
 
             <!--Body del modal-->
             <div class="modal-body">
+                <div class="caja-flex-horizontal">
                 <div *ngIf="examenDetalles">
                     <p>Nombre del examen:&nbsp;{{ examenDetalles.nombre }}</p>
                     <p>Costo por aplicación:&nbsp;{{ examenDetalles.costo }}</p>
@@ -147,6 +148,28 @@
                         <button (click)="deleteExamen(examenDetalles.id_examen)">Eliminar</button>
                     </div>
                 </div>
+
+                <div class="table nuestra-tabla">
+                    <!--Tabla que muestra todos los examenes registrados en el sistema-->
+                    <table>
+                        <thead class="theader">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido Paterno</th>
+                                <th>Apellido Materno</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let alumno of alumnos">
+                                <td>{{ alumno.nombre }}</td>
+                                <td>{{ alumno.a_paterno }}</td>
+                                <td>{{ alumno.a_materno }}</td>
+                                <td><button (click)="delete(examenDetalles, alumno)">eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             </div>
         </div>
     </div>
