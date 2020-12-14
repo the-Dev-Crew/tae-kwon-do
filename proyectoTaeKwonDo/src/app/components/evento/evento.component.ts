@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Evento } from '../../_models/evento';
+import { Tener } from '../../_models/tener';
 import { Participa } from '../../_models/participa';
 import { EventoService } from '../../_services/evento.service';
 import { ParticipaService } from '../../_services/participa.service';
+import { TenerService } from '../../_services/tener.service';
 
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
@@ -22,9 +24,10 @@ export class EventoComponent implements OnInit {
   eventoForm: FormGroup;
   editarEventoForm: FormGroup;
   inscribirAlumnoForm: FormGroup;
+  agregarTipoEventoForm: FormGroup;
   submitted = false;
 
-  constructor(private eventoService:EventoService, private participaService:ParticipaService, private formBuilder:FormBuilder) { }
+  constructor(private eventoService:EventoService, private participaService:ParticipaService, private tenerService:TenerService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     //iniciamos el formulario vacío para evento nuevo.
@@ -54,6 +57,11 @@ export class EventoComponent implements OnInit {
       id_alumno: ['', Validators.required],
       id_evento: ['', Validators.required]
     });
+    this.agregarTipoEventoForm = this.formBuilder.group({
+      id_tener: [''],
+      id_evento: ['', Validators.required],
+      id_tipo: ['', Validators.required]
+    })
     this.getEventos();
   }
 
@@ -73,10 +81,10 @@ export class EventoComponent implements OnInit {
 
   //Obtenemos un evento en específico a partir de un id_evento.
   getEvento(id_evento){
-    this.evento = null;
+    this.eventoDetalles = null;
     this.eventoService.getEvento(id_evento).subscribe(
       res => {
-        this.evento = res;
+        this.eventoDetalles = res;
       },
       err => console.error(err)
     )
@@ -167,6 +175,28 @@ export class EventoComponent implements OnInit {
 
   }
 
+  createTener(){
+    this.submitted = true;
+
+    if(this.agregarTipoEventoForm.invalid){
+      console.log('Formulario inválido');
+      return
+    }
+
+    let aux: Tener = this.agregarTipoEventoForm.value;
+    console.log('id_tener: '+aux.id_tener);
+    console.log('id_evento: '+aux.id_evento);
+    console.log('id_tipo: '+aux.id_tipo);
+
+    this.tenerService.createTener(this.agregarTipoEventoForm.value).subscribe(
+      res => {
+        $("#agregarTipoEvento").modal("hide");
+        this.getEventos();
+      },
+      err => console.error(err)
+    )
+  }
+
   get f() { return this.eventoForm.controls;}
   get fe(){ return this.editarEventoForm.controls;}
   get fee() {return this.inscribirAlumnoForm.controls;}
@@ -210,5 +240,16 @@ export class EventoComponent implements OnInit {
     });
     $("#inscribirAlumno").modal("show");
     $("#verEventoModal").modal("hide");
+  }
+
+  openModalAgregarTipo(id_evento){
+    this.submitted = false;
+    this.agregarTipoEventoForm.reset();
+    this.agregarTipoEventoForm.setValue({
+      id_tener: '',
+      id_evento: id_evento,
+      id_tipo: '',
+    });
+    $("#agregarTipoEvento").modal("show");
   }
 }
