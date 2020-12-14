@@ -133,6 +133,7 @@
 
             <!--Body del modal-->
             <div class="modal-body">
+                <div class="caja-flex-horizontal">
                 <div *ngIf="eventoDetalles">
                     <p>Nombre del evento:&nbsp;{{ eventoDetalles.nombre }}</p>
                     <p>Fecha de inicio/inauguración del evento:&nbsp;{{ eventoDetalles.fecha_inicio }}</p>
@@ -147,6 +148,29 @@
                         <button (click)="openModalModificarEvento(eventoDetalles)">Modificar</button>
                         <button (click)="deleteEvento(eventoDetalles.id_evento)">Eliminar</button>
                     </div>
+                </div>
+                
+                <div class="table nuestra-tabla">
+                    <!--Tabla que muestra todos los eventos registrados en el sistema-->
+                    <table>
+                        <thead class="thead">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido Paterno</th>
+                                <th>Apellido Materno</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let alumno of alumnos">
+                                <td>{{ alumno.nombre }}</td>
+                                <td>{{ alumno.a_paterno }}</td>
+                                <td>{{ alumno.a_materno }}</td>
+                                <td><button (click)="delete(eventoDetalles, alumno)">eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            
                 </div>
             </div>
         </div>

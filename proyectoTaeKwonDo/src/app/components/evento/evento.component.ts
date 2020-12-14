@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Evento } from '../../_models/evento';
+import { Alumno } from '../../_models/alumno';
 import { Tener } from '../../_models/tener';
 import { Participa } from '../../_models/participa';
 import { EventoService } from '../../_services/evento.service';
@@ -26,7 +27,7 @@ export class EventoComponent implements OnInit {
   inscribirAlumnoForm: FormGroup;
   agregarTipoEventoForm: FormGroup;
   submitted = false;
-  num: number;
+  alumnos: Alumno[] | any;
 
   constructor(private eventoService:EventoService, private participaService:ParticipaService, private tenerService:TenerService, private formBuilder:FormBuilder) { }
 
@@ -199,6 +200,15 @@ export class EventoComponent implements OnInit {
     )
   }
 
+  delete(evento, alumno){
+    this.participaService.deleteParticipa(alumno.id_Alumno, evento.id_evento).subscribe(
+      res => {
+        this.openModalVerEvento(evento);
+      },
+      err => console.error(err)
+    )
+  }
+
   get f() { return this.eventoForm.controls;}
   get fe(){ return this.editarEventoForm.controls;}
   get fee() {return this.inscribirAlumnoForm.controls;}
@@ -214,6 +224,14 @@ export class EventoComponent implements OnInit {
   //Modal para ver los datos de un Evento.
   openModalVerEvento(evento){
     this.eventoDetalles = evento;
+    this.alumnos = null;
+    this.participaService.getAlumnosParticipando(evento.id_evento).subscribe(
+      res => {
+        this.alumnos = res;
+      },
+      err => console.error(err)
+    )
+
     $("#verEventoModal").modal("show");
   }
 
