@@ -65,8 +65,6 @@ export class ExamenComponent implements OnInit {
       },
       err => console.error(err)
     )
-
-    this.examenes = [new Examen(1, 'Examen de Cinta', 500.00, 'Cambio de Cinta', '2021-12-04', 'taekwondo', 'café'), new Examen(2, 'Examen de Colocación', 500.00, 'colocación de grado', '2021-12-05', 'taekwondo', 'todos los grados')];
   }
 
   //Obtenemos un examen en específico a partir de un id_examen.

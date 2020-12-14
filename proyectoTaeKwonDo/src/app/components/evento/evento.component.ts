@@ -61,7 +61,7 @@ export class EventoComponent implements OnInit {
       id_tener: [''],
       id_evento: ['', Validators.required],
       id_tipo: ['', Validators.required]
-    })
+    });
     this.getEventos();
   }
 
@@ -210,6 +210,7 @@ export class EventoComponent implements OnInit {
 
   //Modal para ver los datos de un Evento.
   openModalVerEvento(evento){
+    this.submitted = false;
     this.eventoDetalles = evento;
     $("#verEventoModal").modal("show");
   }
