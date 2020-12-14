@@ -141,7 +141,6 @@
                     <p>Fecha de aplicación:&nbsp;{{ examenDetalles.fecha }}</p>
                     <p>Actividad a la que pertenece el examen:&nbsp;{{ examenDetalles.actividad }}</p>
                     <p>Grado que califica:&nbsp;{{ examenDetalles.grado }}</p>
-                    <button (click)="openModalInscribirAlumno(examenDetalles.id_examen)">Inscribir Alumno</button>
                     <br><br>
                     <div class="caja-flex-horizontal">
                         <button (click)="openModalModificarExamen(examenDetalles)">Modificar</button>
@@ -151,6 +150,10 @@
 
                 <div class="table nuestra-tabla">
                     <!--Tabla que muestra todos los examenes registrados en el sistema-->
+                    <div class="caja-flex-horizontal">
+                        <div>   </div>
+                        <button (click)="openModalInscribirAlumno(examenDetalles.id_examen)">Inscribir Alumno</button>
+                    </div>
                     <table>
                         <thead class="theader">
                             <tr>

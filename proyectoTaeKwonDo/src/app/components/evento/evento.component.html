@@ -135,6 +135,10 @@
             <div class="modal-body">
                 <div class="caja-flex-horizontal">
                 <div *ngIf="eventoDetalles">
+                    <div class="caja-flex-horizontal">
+                        <button (click)="openModalModificarEvento(eventoDetalles)">Modificar</button>
+                        <button (click)="deleteEvento(eventoDetalles.id_evento)">Eliminar</button>
+                    </div>
                     <p>Nombre del evento:&nbsp;{{ eventoDetalles.nombre }}</p>
                     <p>Fecha de inicio/inauguración del evento:&nbsp;{{ eventoDetalles.fecha_inicio }}</p>
                     <p>Fecha de fin/clausura del evento:&nbsp;</p>
@@ -145,15 +149,14 @@
                     <br><br>
                     <button (click)="openModalAgregarTipo(eventoDetalles.id_evento)">Agregar Tipo de Evento</button>
                     <br><br>
-                    <button (click)="openModalInscribirAlumno(eventoDetalles.id_evento)">Inscribir Alumno</button>
-                    <br><br>
-                    <div class="caja-flex-horizontal">
-                        <button (click)="openModalModificarEvento(eventoDetalles)">Modificar</button>
-                        <button (click)="deleteEvento(eventoDetalles.id_evento)">Eliminar</button>
-                    </div>
+
                 </div>
                 
                 <div class="table nuestra-tabla">
+                    <div class="caja-flex-horizontal">
+                        <div>    </div>
+                        <button (click)="openModalInscribirAlumno(eventoDetalles.id_evento)">Inscribir Alumno al evento</button>
+                    </div>
                     <!--Tabla que muestra todos los eventos registrados en el sistema-->
                     <table>
                         <thead class="thead">
@@ -195,14 +198,7 @@
             <div class="modal-body">
                 <form [formGroup]="editarEventoForm" (ngSubmit)="updateEvento()">
                      <!--Input para el id del evento-->
-                    <div class="form-group">
-                        <label for="id_evento">id_evento<span class="text-danger">*</span></label>
-                        <input type="number" formControlName="id_evento" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.id_evento.errors }">
-                        <div *ngIf="submitted && fe.id_evento.errors" class="invalid-feedback">
-                            <div *ngIf="fe.id_evento.errors.required">El id_evento del evento es obligatorio
-                            </div>
-                        </div>
-                    </div>
+                    
                     <!--Input para el nombre del evento-->
                     <div class="form-group">
                         <label for="nombre">Nombre<span class="text-danger">*</span></label>
