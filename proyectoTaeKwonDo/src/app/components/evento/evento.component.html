@@ -149,6 +149,8 @@
                     <br><br>
                     <button (click)="openModalAgregarTipo(eventoDetalles.id_evento)">Agregar Tipo de Evento</button>
                     <br><br>
+                    <span>Actividades del evento:&nbsp;</span>
+                    <span *ngFor="let actividad of actividades">{{ actividad }}, &nbsp;</span>
 
                 </div>
                 

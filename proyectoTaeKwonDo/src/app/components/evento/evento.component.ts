@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Evento } from '../../_models/evento';
 import { Alumno } from '../../_models/alumno';
 import { Tener } from '../../_models/tener';
+import { Relacionar } from '../../_models/relacionar';
 import { Participa } from '../../_models/participa';
 import { EventoService } from '../../_services/evento.service';
 import { ParticipaService } from '../../_services/participa.service';
 import { TenerService } from '../../_services/tener.service';
+import { RelacionarService } from '../../_services/relacionar.service';
 
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Tipo_Evento } from 'src/app/_models/tipo_evento';
@@ -30,8 +32,9 @@ export class EventoComponent implements OnInit {
   submitted = false;
   alumnos: Alumno[] | any;
   tipos: Tipo_Evento[] | any;
+  actividades: string[] | any;
 
-  constructor(private eventoService:EventoService, private participaService:ParticipaService, private tenerService:TenerService, private formBuilder:FormBuilder) { }
+  constructor(private eventoService:EventoService, private relacionarService:RelacionarService, private participaService:ParticipaService, private tenerService:TenerService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     //iniciamos el formulario vacío para evento nuevo.
@@ -241,6 +244,13 @@ export class EventoComponent implements OnInit {
         this.tipos = res;
       },
       err => console.error(err)
+    )
+    this.actividades = null;
+    this.relacionarService.getActividadesEvento(evento.id_evento).subscribe(
+      res => {
+        this.actividades = res;
+      },
+      err => console.error(err)      
     )
 
     $("#verEventoModal").modal("show");
