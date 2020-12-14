@@ -172,7 +172,7 @@ export class EventoComponent implements OnInit {
     this.participaService.createParticipa(this.inscribirAlumnoForm.value).subscribe(
       res => {
         $("#inscribirAlumno").modal("hide");
-        this.getEventos();
+        this.openModalVerEvento(this.eventoDetalles);
       },
       err => console.error(err)
     )
@@ -196,7 +196,7 @@ export class EventoComponent implements OnInit {
     this.tenerService.createTener(this.agregarTipoEventoForm.value).subscribe(
       res => {
         $("#agregarTipoEvento").modal("hide");
-        this.getEventos();
+        this.openModalVerEvento(this.eventoDetalles);
       },
       err => console.error(err)
     )
