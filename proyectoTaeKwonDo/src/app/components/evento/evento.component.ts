@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Evento } from '../../_models/evento';
+import { Participa } from '../../_models/participa';
 import { EventoService } from '../../_services/evento.service';
+import { ParticipaService } from '../../_services/participa.service';
 
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
@@ -19,9 +21,10 @@ export class EventoComponent implements OnInit {
   eventoDetalles: Evento | any;
   eventoForm: FormGroup;
   editarEventoForm: FormGroup;
+  inscribirAlumnoForm: FormGroup;
   submitted = false;
 
-  constructor(private eventoService:EventoService, private formBuilder:FormBuilder) { }
+  constructor(private eventoService:EventoService, private participaService:ParticipaService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     //iniciamos el formulario vacío para evento nuevo.
@@ -45,6 +48,11 @@ export class EventoComponent implements OnInit {
       descripcion: [''],
       //NOS FALTA VER QUE ONDA CON SU RESPECTIVA LISTA DE TIPO_EVENTO
       //tipo_evento: ['', Validators.required]
+    });
+    this.inscribirAlumnoForm = this.formBuilder.group({
+      id_participa: [''],
+      id_alumno: ['', Validators.required],
+      id_evento: ['', Validators.required]
     });
     this.getEventos();
   }
@@ -136,8 +144,32 @@ export class EventoComponent implements OnInit {
     )
   }
 
+  createParticipa(){
+    this.submitted = true;
+
+    if(this.inscribirAlumnoForm.invalid){
+      console.log('Formulario inválido');
+      return
+    }
+
+    let aux: Participa = this.inscribirAlumnoForm.value;
+    console.log('id_participa: '+aux.id_participa);
+    console.log('id_alumno: '+aux.id_alumno);
+    console.log('id_evento: '+aux.id_evento);
+
+    this.participaService.createParticipa(this.inscribirAlumnoForm.value).subscribe(
+      res => {
+        $("#inscribirAlumno").modal("hide");
+        this.getEventos();
+      },
+      err => console.error(err)
+    )
+
+  }
+
   get f() { return this.eventoForm.controls;}
   get fe(){ return this.editarEventoForm.controls;}
+  get fee() {return this.inscribirAlumnoForm.controls;}
 
   //Modal para crear evento.
   openModalEvento(){
@@ -166,5 +198,17 @@ export class EventoComponent implements OnInit {
       //tipo_evento: [evento.tipo_evento],
     });
     $("#modificarEvento").modal("show");
+  }
+
+  openModalInscribirAlumno(id_evento){
+    this.submitted = false;
+    this.inscribirAlumnoForm.reset();
+    this.inscribirAlumnoForm.setValue({
+      id_participa: '',
+      id_alumno: '',
+      id_evento: id_evento,
+    });
+    $("#inscribirAlumno").modal("show");
+    $("#verEventoModal").modal("hide");
   }
 }
