@@ -149,7 +149,8 @@ export class EventoComponent implements OnInit {
 
     this.eventoService.updateEvento(this.editarEventoForm.value).subscribe(
       res => {
-        $("#editarEventoModal").modal("hide");
+        $("#modificarEvento").modal("hide");
+        this.openModalVerEvento(this.editarEventoForm.value);
         this.getEventos();
       },
       err => console.error(err)
