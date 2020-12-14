@@ -41,7 +41,7 @@ public class Tipo_EventoCtrl {
 	}
 	
 	@PutMapping("/tipo_evento/{id}")
-	public void updateTipo_Evento(@Valid @RequestBody Tipo_Evento te, @PathVariable int id) {
+	public void updateTipo_Evento( @RequestBody Tipo_Evento te, @PathVariable int id) {
 		tipoEService.updateTipo_Evento(id, te);
 	}
 	

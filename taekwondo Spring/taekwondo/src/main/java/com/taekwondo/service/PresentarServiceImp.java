@@ -62,7 +62,6 @@ public class PresentarServiceImp implements PresentarService {
 	@Override
 	public void createPresentar(Presentar p) {
 		presentarRepo.save(p);
-		
 	}
 
 	@Override

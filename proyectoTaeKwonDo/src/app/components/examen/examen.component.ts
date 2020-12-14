@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Examen } from '../../_models/examen';
+import { Presentar } from '../../_models/presentar';
 import { ExamenService } from '../../_services/examen.service';
+import { PresentarService } from '../../_services/presentar.service';
 
 import { FormBuilder, Validators,FormGroup } from '@angular/forms';
 
@@ -19,9 +21,10 @@ export class ExamenComponent implements OnInit {
   examenDetalles: Examen | any;
   examenForm: FormGroup;
   editarExamenForm: FormGroup;
+  inscribirAlumnoForm: FormGroup; 
   submitted = false;
 
-  constructor(private examenService:ExamenService, private formBuilder: FormBuilder) { }
+  constructor(private examenService:ExamenService, private presentarService:PresentarService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     //iniciamos el formulario vacío para nuevo examen
@@ -44,6 +47,11 @@ export class ExamenComponent implements OnInit {
       actividad: ['', Validators.required],
       grado: ['', Validators.required]
     });
+    this.inscribirAlumnoForm = this.formBuilder.group({
+      id_presentar: [''],
+      id_alumno: ['', Validators.required],
+      id_examen:['', Validators.required]
+    });
     this.getExamenes();
   }
 
@@ -63,10 +71,10 @@ export class ExamenComponent implements OnInit {
 
   //Obtenemos un examen en específico a partir de un id_examen.
   getExamen(id_examen){
-    this.examen = null;
+    this.examenDetalles = null;
     this.examenService.getExamen(id_examen).subscribe(
       res => {
-        this.examen = res;
+        this.examenDetalles = res;
       },
       err => console.error(err)
     )
@@ -126,9 +134,34 @@ export class ExamenComponent implements OnInit {
     )
   }
 
+  //Aquí creamos el objeto presentar para agregar la participación de un alumno en un examen 
+  createPresentar(){
+    this.submitted = true;
+
+    if(this.inscribirAlumnoForm.invalid){
+      console.log('Formulario inválido');
+      return;
+    }
+
+    let aux: Presentar = this.inscribirAlumnoForm.value;
+    console.log('id_presentar: '+ aux.id_presentar);
+    console.log('id_Alumno: '+ aux.id_alumno);
+    console.log('id_examen: ' + aux.id_examen);
+    $("#inscribirAlumno").modal("hide");
+
+    this.presentarService.createPresentar(this.inscribirAlumnoForm.value).subscribe(
+      res => {
+        $("#inscribirAlumno").modal("hide");
+        this.getExamenes();
+      },
+      err => console.error(err)
+    )
+  }
+
   //No me acuerdo para que son estas funciones.
   get f() { return this.examenForm.controls;}
   get fe() { return this.editarExamenForm.controls;}
+  get fee() { return this.inscribirAlumnoForm.controls;}
 
   //Modal para crear examen.
   openModalExamen(){
@@ -137,12 +170,15 @@ export class ExamenComponent implements OnInit {
   }
 
   //Modal para ver los detalles de un examen.
+
   openModalVerExamen(examen){
+    this.submitted = false;
     this.examenDetalles = examen;
     $("#verExamenModal").modal("show");
   }
 
   openModalModificarExamen(examen){
+    this.submitted = false;
     this.editarExamenForm.reset();
     this.editarExamenForm.setValue({
       id_examen: examen.id_examen,
@@ -154,5 +190,17 @@ export class ExamenComponent implements OnInit {
       grado: examen.grado,
     });
     $("#modificarExamen").modal("show");
+  }
+
+  openModalInscribirAlumno(id_examen){
+    this.submitted = false;
+    this.inscribirAlumnoForm.reset();
+    this.inscribirAlumnoForm.setValue({
+      id_presentar: '',
+      id_alumno: '',
+      id_examen: id_examen,
+    });
+    $("#inscribirAlumno").modal("show");
+    $("#verExamenModal").modal("hide");
   }
 }
