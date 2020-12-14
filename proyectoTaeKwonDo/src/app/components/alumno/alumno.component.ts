@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Alumno } from '../../_models/alumno';
 import { Examen } from '../../_models/examen';
+import { Evento } from '../../_models/evento';
 import { AlumnoService } from '../../_services/alumno.service';
 import { PresentarService } from '../../_services/presentar.service';
+import { ParticipaService } from '../../_services/participa.service';
 
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -19,12 +21,13 @@ export class AlumnoComponent implements OnInit {
   alumnos: Alumno[] | any;
   alumno: Alumno | any;
   examenes: Examen[] |any;
+  eventos: Evento[] | any;
   alumnoDetalles: Alumno | any;
   alumnoForm: FormGroup;
   editarAlumnoForm: FormGroup;
   submitted = false;
 
-  constructor(private alumnoService: AlumnoService, private presentarService: PresentarService, private formBuilder: FormBuilder) { }
+  constructor(private alumnoService: AlumnoService, private presentarService: PresentarService,private participaService: ParticipaService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     //Inice el formulario.
@@ -187,6 +190,17 @@ export class AlumnoComponent implements OnInit {
       err => console.error(err)
     )
     $("#verHistorialExamenModal").modal("show");
+  }
+  openModalVerHistorialEvento(alumnoDetalles){
+    $("#verAlumnoModal").modal("hide");
+    this.eventos = null;
+    this.participaService.getEventosParticipado(alumnoDetalles.id_Alumno).subscribe(
+      res => {
+        this.eventos = res;
+      },
+      err => console.error(err)
+    )
+    $("#verHistorialEventoModal").modal("show");
   }
 
   //Ventana para modificar un alumno.
