@@ -157,12 +157,12 @@ export class EventoComponent implements OnInit {
     this.submitted = false;
     this.editarEventoForm.reset();
     this.editarEventoForm.setValue({
-      id_evento: [evento.id_evento],
-      nombre: [evento.nombre],
-      fecha_inicio: [evento.fecha_inicio.substring(0, 10)],
-      fecha_fin: [evento.fecha_fin.substring(0, 10)],
-      costo: [evento.costo],
-      descripcion: [evento.descripcion],
+      id_evento: evento.id_evento,
+      nombre: evento.nombre,
+      fecha_inicio: evento.fecha_inicio.substring(0, 10),
+      fecha_fin: evento.fecha_fin.substring(0, 10),
+      costo: evento.costo,
+      descripcion: evento.descripcion,
       //tipo_evento: [evento.tipo_evento],
     });
     $("#modificarEvento").modal("show");

@@ -24,7 +24,8 @@ export class TipoEventoComponent implements OnInit {
   ngOnInit(): void {
     //inicie el formulario vacio
     this.tipoEventoForm = this.formBuilder.group({
-      //id_tipo: [''],
+
+      id_tipo: [''],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required]
     });
@@ -123,9 +124,9 @@ export class TipoEventoComponent implements OnInit {
   openModalEditarTipoEvento(tipoEvento){
     this.editarTipoEventoForm.reset();
     this.editarTipoEventoForm.setValue({
-      id_tipo: [tipoEvento.id_tipo],
-      nombre: [tipoEvento.nombre],
-      descripcion: [tipoEvento.descripcion],
+      id_tipo: tipoEvento.id_tipo,
+      nombre: tipoEvento.nombre,
+      descripcion: tipoEvento.descripcion,
     });
     $("#editarTipoEventoModal").modal("show");
   }

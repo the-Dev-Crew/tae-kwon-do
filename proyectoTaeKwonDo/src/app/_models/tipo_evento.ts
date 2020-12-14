@@ -3,8 +3,8 @@ export class Tipo_Evento{
     nombre: string;
     descripcion: string;
 
-    constructor(id, nombre, descripcion){
-        this.id_tipo = id;
+    constructor(id_tipo, nombre, descripcion){
+        this.id_tipo = id_tipo;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }

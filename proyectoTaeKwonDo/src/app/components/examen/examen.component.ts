@@ -170,9 +170,10 @@ export class ExamenComponent implements OnInit {
   }
 
   //Modal para ver los detalles de un examen.
-  openModalVerExamen(id_examen){
+
+  openModalVerExamen(examen){
     this.submitted = false;
-    this.getExamen(id_examen);
+    this.examenDetalles = examen;
     $("#verExamenModal").modal("show");
   }
 

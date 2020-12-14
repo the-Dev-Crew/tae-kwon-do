@@ -180,18 +180,18 @@ export class AlumnoComponent implements OnInit {
     this.submitted = false;
     this.editarAlumnoForm.reset();
     this.editarAlumnoForm.setValue({
-      id_Alumno: [alumno.id_Alumno],
-      nombre: [alumno.nombre],
-      a_paterno: [alumno.a_paterno],
-      a_materno: [alumno.a_materno],
-      fotografia: [''],
-      fecha_nacimiento: [alumno.fecha_nacimiento.substring(0, 10)],
-      seguro_medico: [alumno.seguro_medico],
-      certificado_medico: [''],
-      carta_responsiva: [''],
-      actividad: [alumno.actividad],
-      grado: [alumno.grado],
-      username: [alumno.username],
+      id_Alumno: alumno.id_Alumno,
+      nombre: alumno.nombre,
+      a_paterno: alumno.a_paterno,
+      a_materno: alumno.a_materno,
+      fotografia: '',
+      fecha_nacimiento: alumno.fecha_nacimiento,
+      seguro_medico: alumno.seguro_medico,
+      certificado_medico: '',
+      carta_responsiva: '',
+      actividad: alumno.actividad,
+      grado: alumno.grado,
+      username: alumno.username,
     });
     
     $("#modificarAlumno").modal("show");
