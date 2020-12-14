@@ -23,11 +23,13 @@ DROP TABLE IF EXISTS `relacionar`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `relacionar` (
-  `id_evento` int(11) NOT NULL,
+  `id_evento` int NOT NULL,
   `actividad` varchar(45) NOT NULL,
+  `id_relacionar` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_relacionar`),
   KEY `relacionarfk1_idx` (`id_evento`),
   CONSTRAINT `relacionarfk1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
