@@ -7,14 +7,15 @@ import { Usuario } from '../_models/usuario';
 })
 export class UsuarioService {
   API_URI = 'http://localhost:8080';
+
   constructor(private http: HttpClient) { }
 
   getUsuarios(){
     return this.http.get(this.API_URI+'/usuario');
   }
 
-  getUsuario(username: string){
-    return this.http.get(this.API_URI+'/usuario/'+username);
+  getUsuario(usuario: string){
+    return this.http.get(this.API_URI+'/usuario/'+usuario);
   }
 
   createUsuario(usuario: Usuario){
@@ -22,10 +23,10 @@ export class UsuarioService {
   }
 
   updateUsuario(usuario: Usuario){
-    return this.http.put(this.API_URI+'/usuario/'+ usuario.username, usuario);
+    return this.http.put(this.API_URI+'/usuario/'+ usuario.usuario, usuario);
   }
 
-  deleteUsuario(username: string){
-    return this.http.delete(this.API_URI+'/usuario/'+username);
+  deleteUsuario(usuario: string){
+    return this.http.delete(this.API_URI+'/usuario/'+usuario);
   }
 }

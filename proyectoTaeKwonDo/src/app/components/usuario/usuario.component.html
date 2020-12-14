@@ -1,140 +1,159 @@
-<div class="container-fluid">
-    <div class="card mb-3">
-        <!-- Header  -->
-        <div class="card-header">
-            <h3><i class="fas fa-users"></i>&nbsp;&nbsp;Usuarios Registrados</h3>
-            <button style="float: right;" (click)="openModalUsuario()" type="button" class="btn btn-info btn-sm"> Registrar <i class="fas fa-user-plus"></i>
-            </button>
-        </div>
+<html>
 
-        <!-- Body  -->
-        <div class="card-body">
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th class="text-center">Usuario</th>
-                        <th class="text-center">tipo</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let usuario of usuarios">
-                        <td class="text-center">{{ usuario.usuario}}</td>
-                        <td class="text-center">{{ usuario.tipo_usuario }}</td>
+<!--Head-->
+<head>
+    <title>Usuarios</title>
+</head>
 
-                        <td>
-                            <div>
-                                <button (click)="openModalEditarUsuario(usuario)" type="button" class="btn btn-primary">Editar <i class="fas fa-pen-square"></i></button>
-                                &nbsp;&nbsp;
-                                <button (click)="deleteUsuario(usuario.username)" type="button" class="btn btn-danger">Eliminar <i class="fas fa-ban"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<!--Recuadro para ver los Usuarios-->
+<div class="card">
+    <!--Header del recuadro-->
+    <div class="card-header contenido-tabla-header">
+        <h3>Usuarios</h3>
+        <button style="float: right;" (click)="openModalUsuario()" type="button" class="btn btn-info btn-sm"> Nuevo Usuario</button>
     </div>
 
+    <!--Body-->
+    <div class="table nuestra-tabla">
+        <!--Tabla que muestra a todos los usuarios registrados en el sistema-->
+        <table>
+            <thead class="thead">
+                <tr>
+                    <th>Username</th>
+                    <th>Tipo de Usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios">
+                    <td>{{ usuario.usuario }}</td>
+                    <td>{{ usuario.tipo_usuario }}</td>
+                    <td><button (click)="openModalVerUsuario(usuario)">Detalles</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<br><br>
-
+<!--Modal para agregar un usuario-->
 <div class="modal" id="usuarioModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
+            <!--Header del Modal para Nuevo Usuario-->
             <div class="modal-header">
-                <h4 class="modal-title">Registrar Usuario</h4>
+                <h4 class="modal-title">Nuevo Usuario</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <div class="modal-body">
                 <form [formGroup]="usuarioForm" (ngSubmit)="createUsuario()">
+                    <!-- Input para el username del nuevo usuario-->
                     <div class="form-group">
-                        <label for="username">Usuario<span class="text-danger">*</span></label>
-                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >
-                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                            <div *ngIf="f.username.errors.required">El nombre de usuario es obligatorio</div>
+                        <label for="usuario">Username:&nbsp;</label>
+                        <input type="text" formControlName="usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
+                        <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
+                            <div *ngIf="f.usuario.errors.required">El username es obligatorio</div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="passsword">Password<span class="text-danger">*</span></label>
-                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <label for="password">Password:&nbsp;</label>
+                        <input type="text" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                        <div *ngIf="f.password.errors.required">La contraseña es obligatria</div>
+                            <div *ngIf="f.password.errors.required">La contraseña es obligatoria</div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="tipo_usuario">Tipo<span class="text-danger">*</span></label>
-                        <input type="text" formControlName="tipo_usuario" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipo_usuario.errors }" />
+                        <label for="tipo_usuario">Tipo de Usuario:&nbsp;</label>
+                        <input type="text" formControlName="tipo_usuario" [ngClass]="{ 'is-invalid': submitted && f.tipo_usuario.errors }">
                         <div *ngIf="submitted && f.tipo_usuario.errors" class="invalid-feedback">
-                        <div *ngIf="f.tipo_usuario.errors.required">El tipo es obligatrio</div>
+                            <div *ngIf="f.tipo_usuario.errors.required">El username es obligatorio</div>
                         </div>
                     </div>
 
-                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
                     <div>
                         <button class="btn btn-success btn-block">Guardar</button>
                     </div>
                 </form>
             </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-            </div>
-        
         </div>
     </div>
 </div>
 
-<div class="modal" id="editarUsuarioModal">
+<!--Modal para ver los detalles de un usuario-->
+<div class="modal" id="verUsuarioModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title">Editar Usuario</h4>
+                <h4 class="modal-title">Detalles del Usuario</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <div class="modal-body">
-                <form [formGroup]="editarUsuarioForm" (ngSubmit)="updateUsuario()">
-                    <div class="form-group">
-                        <label for="username">Usuario<span class="text-danger">*</span></label>
-                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.username.errors }" >
-                        <div *ngIf="submitted && fe.username.errors" class="invalid-feedback">
-                            <div *ngIf="fe.username.errors.required">El nombre de usuario es obligatorio</div>
-                        </div>
-                    </div>
+                <div *ngIf="usuarioDetalles">
+                    <p>Username:&nbsp;{{ usuarioDetalles.usuario }}</p>
+                    <p>Password:&nbsp;{{ usuarioDetalles.password }}</p>
+                    <p>Tipo de Usuario:&nbsp;{{ usuarioDetalles.tipo_usuario }}</p>
 
-                    <div class="form-group">
-                        <label for="passsword">Password<span class="text-danger">*</span></label>
-                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.password.errors }" />
-                        <div *ngIf="submitted && fe.password.errors" class="invalid-feedback">
-                        <div *ngIf="fe.password.errors.required">La contraseña es obligatria</div>
-                        </div>
+                    <div class="caja-flex-horizontal">
+                        <button (click)="openModalEditarUsuario(usuarioDetalles)">Modificar Alumno</button>
+                        <button (click)="deleteUsuario(usuarioDetalles.usuario)">Eliminar Alumno</button>
                     </div>
-
-                    <div class="form-group">
-                        <label for="tipo_usuario">Tipo<span class="text-danger">*</span></label>
-                        <input type="text" formControlName="tipo_usuario" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.tipo_usuario.errors }" />
-                        <div *ngIf="submitted && fe.tipo_usuario.errors" class="invalid-feedback">
-                        <div *ngIf="fe.tipo_usuario.errors.required">El tipo es obligatrio</div>
-                        </div>
-                    </div>
-
-                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
-                    <div>
-                        <button class="btn btn-success btn-block">Guardar</button>
-                    </div>
-                </form>
+                </div>
             </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-            </div>
-        
         </div>
     </div>
 </div>
+
+<!--Modal para modificar un alumno-->
+<div class="modal" id="editarUsuarioModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <form [formGroup]="editarUsuarioForm" (ngSubmit)="updateUsuario()">
+                     <!--Input id-->
+                    <div class="form-group">
+                        <label for="usuario">Usuario<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="usuario" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.usuario.errors }">
+                            <div *ngIf="submitted && fe.usuario.errors" class="invalid-feedback">
+                            <div *ngIf="fe.usuario.errors.required">El username es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password<span class="text-danger"></span></label>
+                        <input type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.password.errors }">
+                            <div *ngIf="submitted && fe.password.errors" class="invalid-feedback">
+                            <div *ngIf="fe.password.errors.required">La contraseña es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_usuario">Tipo de Usuario: <span class="text-danger"></span></label>
+                        <input type="text" formControlName="tipo_usuario"  class="form-control" [ngClass]="{ 'is-invalid': submitted && fe.tipo_usuario.errors }">
+                            <div *ngIf="submitted && fe.tipo_usuario.errors" class="invalid-feedback">
+                            <div *ngIf="fe.tipo_usuario.errors.required">El tipo de usuario es obligatorio</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+
+                    <button class="btn btn-success btn-block">Guardar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

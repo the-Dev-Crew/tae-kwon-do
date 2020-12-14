@@ -16,6 +16,7 @@ export class UsuarioComponent implements OnInit {
   
   usuarios: Usuario[] | any;
   usuario: Usuario | any;
+  usuarioDetalles: Usuario | any;
   usuarioForm: FormGroup;
   editarUsuarioForm: FormGroup;
   submitted = false;
@@ -25,12 +26,12 @@ export class UsuarioComponent implements OnInit {
   ngOnInit(): void {
     // Inicie el formulario vacio
     this.usuarioForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      usuario: ['', Validators.required],
       password: ['', Validators.required],
       tipo_usuario: ['', Validators.required]
     });
     this.editarUsuarioForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      usuario: ['', Validators.required],
       password: ['', Validators.required],
       tipo_usuario: ['', Validators.required]
     });
@@ -50,9 +51,9 @@ export class UsuarioComponent implements OnInit {
     )
   }
 
-  getUsuario(username){
+  getUsuario(usuario){
     this.usuario = null;
-    this.usuarioService.getUsuario(username).subscribe(
+    this.usuarioService.getUsuario(usuario).subscribe(
       res => {
         this.usuario = res;
       },
@@ -60,8 +61,8 @@ export class UsuarioComponent implements OnInit {
     )
   }
 
-  deleteUsuario(username){
-    this.usuarioService.deleteUsuario(username).subscribe(
+  deleteUsuario(usuario){
+    this.usuarioService.deleteUsuario(usuario).subscribe(
       res => {
         this.getUsuarios();
       },
@@ -78,12 +79,12 @@ export class UsuarioComponent implements OnInit {
     }
 
     let aux: Usuario = this.usuarioForm.value;
-    console.log('Nuevo Usuario: '+ aux.username);
+    console.log('Nuevo Usuario: '+ aux.usuario);
     console.log('Contraseña: ' + aux.password);
     console.log('tipo: ' + aux.tipo_usuario);
 
     $("#usuarioModal").modal("hide");
-    this.usuarioService.createUsuario(aux).subscribe(
+    this.usuarioService.createUsuario(this.usuarioForm.value).subscribe(
       res => {
         $("#usuarioModal").modal("hide");
         this.getUsuarios();
@@ -101,7 +102,7 @@ export class UsuarioComponent implements OnInit {
     }
 
     let aux: Usuario = this.editarUsuarioForm.value;
-    console.log('Nuevo Usuario: '+ aux.username);
+    console.log('Nuevo Usuario: '+ aux.usuario);
     console.log('Nueva contraseña: ' + aux.password);
     console.log('Nuevo tipo: ' + aux.tipo_usuario);
     $("#editarUsuarioModal").modal("hide");
@@ -124,13 +125,17 @@ export class UsuarioComponent implements OnInit {
     $("#usuarioModal").modal("show");
   }
 
-  openModalEditarUsuario(usuario){
+  openModalVerUsuario(usuario){
+    this.usuarioDetalles = usuario;
+    $("#verUsuarioModal").modal("show");
+  }
 
+  openModalEditarUsuario(user){
     this.editarUsuarioForm.reset();
     this.editarUsuarioForm.setValue({
-      username: usuario.usuario,
-      password: usuario.password,
-      tipo_usuario: usuario.tipo_usuario,
+      usuario: user.usuario,
+      password: user.password,
+      tipo_usuario: user.tipo_usuario,
     });
     $("#editarUsuarioModal").modal("show");
   }
