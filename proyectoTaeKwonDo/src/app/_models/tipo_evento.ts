@@ -1,10 +1,10 @@
 export class Tipo_Evento{
-    id: number;
+    id_tipo: number;
     nombre: string;
     descripcion: string;
 
-    constructor(id, nombre, descripcion){
-        this.id = id;
+    constructor(id_tipo, nombre, descripcion){
+        this.id_tipo = id_tipo;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }

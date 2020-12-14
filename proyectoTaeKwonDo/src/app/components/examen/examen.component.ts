@@ -137,22 +137,21 @@ export class ExamenComponent implements OnInit {
   }
 
   //Modal para ver los detalles de un examen.
-  openModalVerExamen(id_examen){
-    this.getExamen(id_examen);
-    this.examenDetalles = this.examenes[(id_examen-1)];
+  openModalVerExamen(examen){
+    this.examenDetalles = examen;
     $("#verExamenModal").modal("show");
   }
 
   openModalModificarExamen(examen){
     this.editarExamenForm.reset();
     this.editarExamenForm.setValue({
-      id_examen: [examen.id_examen],
-      nombre: [examen.nombre],
-      costo: [examen.costo],
-      tipo: [examen.tipo],
-      fecha: [examen.fecha.substring(0, 10)],
-      actividad: [examen.actividad],
-      grado: [examen.grado],
+      id_examen: examen.id_examen,
+      nombre: examen.nombre,
+      costo: examen.costo,
+      tipo: examen.tipo,
+      fecha: examen.fecha.substring(0, 10),
+      actividad: examen.actividad,
+      grado: examen.grado,
     });
     $("#modificarExamen").modal("show");
   }
