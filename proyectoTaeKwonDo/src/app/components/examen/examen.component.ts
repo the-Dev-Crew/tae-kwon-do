@@ -150,7 +150,7 @@ export class ExamenComponent implements OnInit {
     console.log('id_examen: ' + aux.id_examen);
     $("#inscribirAlumno").modal("hide");
 
-    this.presentarService.createPresentar(this.inscribirAlumnoForm.value).subscribe(
+    this.presentarService.createPresentar(aux.id_examen, aux.id_alumno, this.inscribirAlumnoForm.value).subscribe(
       res => {
         $("#inscribirAlumno").modal("hide");
         this.getExamenes();
