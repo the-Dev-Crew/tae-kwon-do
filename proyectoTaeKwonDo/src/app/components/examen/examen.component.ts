@@ -129,6 +129,7 @@ export class ExamenComponent implements OnInit {
     this.examenService.updateExamen(this.editarExamenForm.value).subscribe(
       res => {
         this.getExamenes();
+        $("#modificarExamen").modal("hide");
       },
       err => console.error(err)
     )
@@ -147,7 +148,6 @@ export class ExamenComponent implements OnInit {
     console.log('id_presentar: '+ aux.id_presentar);
     console.log('id_Alumno: '+ aux.id_alumno);
     console.log('id_examen: ' + aux.id_examen);
-    $("#inscribirAlumno").modal("hide");
 
     this.presentarService.createPresentar(this.inscribirAlumnoForm.value).subscribe(
       res => {
