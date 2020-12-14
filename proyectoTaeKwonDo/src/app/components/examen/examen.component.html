@@ -140,7 +140,7 @@
                     <p>Fecha de aplicación:&nbsp;{{ examenDetalles.fecha }}</p>
                     <p>Actividad a la que pertenece el examen:&nbsp;{{ examenDetalles.actividad }}</p>
                     <p>Grado que califica:&nbsp;{{ examenDetalles.grado }}</p>
-                    <button (click)="openModalInscribirAlumno(examenDetalles)">Inscribir Alumno</button>
+                    <button (click)="openModalInscribirAlumno(examenDetalles.id_examen)">Inscribir Alumno</button>
                     <br><br>
                     <div class="caja-flex-horizontal">
                         <button (click)="openModalModificarExamen(examenDetalles)">Modificar</button>
@@ -242,10 +242,10 @@
                 <form [formGroup]="inscribirAlumnoForm" (ngSubmit)="createPresentar()">
                     
                     <div class="form-group">
-                        <label for="id_Alumno">ID del Alumno<span class="text-danger">*</span></label>
-                        <input type="number" min="0" formControlName="id_Alumno" class="form-control" [ngClass]="{ 'is-invalid': submitted && fee.id_Alumno.errors }" />
-                        <div *ngIf="submitted && fee.id_Alumno.errors" class="invalid-feedback">
-                        <div *ngIf="fee.id_Alumno.errors.required">El ID del alumno es obligatrio</div>
+                        <label for="id_alumno">ID del Alumno<span class="text-danger">*</span></label>
+                        <input type="number" min="0" formControlName="id_alumno" class="form-control" [ngClass]="{ 'is-invalid': submitted && fee.id_alumno.errors }" />
+                        <div *ngIf="submitted && fee.id_alumno.errors" class="invalid-feedback">
+                        <div *ngIf="fee.id_alumno.errors.required">El ID del alumno es obligatrio</div>
                         </div>
                     </div>
 

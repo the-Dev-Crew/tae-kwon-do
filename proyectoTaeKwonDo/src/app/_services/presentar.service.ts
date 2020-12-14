@@ -25,8 +25,8 @@ export class PresentarService {
     return this.http.get(this.API_URI+'/presentar/examen/'+id_examen);
   }
 
-  createPresentar(id_examen: number, id_alumno: number, presentar: Presentar){
-    return this.http.post(this.API_URI+'/presentar/'+id_examen+'/'+id_alumno, presentar);
+  createPresentar(presentar: Presentar){
+    return this.http.post(this.API_URI+'/presentar', presentar);
   }
 
   deletePresentar(id_Alumno: number, id_examen: number){

@@ -71,10 +71,9 @@ export class ExamenComponent implements OnInit {
 
   //Obtenemos un examen en específico a partir de un id_examen.
   getExamen(id_examen){
-    this.examen = null;
+    this.examenDetalles = null;
     this.examenService.getExamen(id_examen).subscribe(
       res => {
-        this.examen = res;
         this.examenDetalles = res;
       },
       err => console.error(err)
@@ -150,7 +149,7 @@ export class ExamenComponent implements OnInit {
     console.log('id_examen: ' + aux.id_examen);
     $("#inscribirAlumno").modal("hide");
 
-    this.presentarService.createPresentar(aux.id_examen, aux.id_alumno, this.inscribirAlumnoForm.value).subscribe(
+    this.presentarService.createPresentar(this.inscribirAlumnoForm.value).subscribe(
       res => {
         $("#inscribirAlumno").modal("hide");
         this.getExamenes();
@@ -172,31 +171,33 @@ export class ExamenComponent implements OnInit {
 
   //Modal para ver los detalles de un examen.
   openModalVerExamen(id_examen){
+    this.submitted = false;
     this.getExamen(id_examen);
-    this.examenDetalles = this.examenes[(id_examen-1)];
     $("#verExamenModal").modal("show");
   }
 
   openModalModificarExamen(examen){
+    this.submitted = false;
     this.editarExamenForm.reset();
     this.editarExamenForm.setValue({
-      id_examen: [examen.id_examen],
-      nombre: [examen.nombre],
-      costo: [examen.costo],
-      tipo: [examen.tipo],
-      fecha: [examen.fecha.substring(0, 10)],
-      actividad: [examen.actividad],
-      grado: [examen.grado],
+      id_examen: examen.id_examen,
+      nombre: examen.nombre,
+      costo: examen.costo,
+      tipo: examen.tipo,
+      fecha: examen.fecha.substring(0, 10),
+      actividad: examen.actividad,
+      grado: examen.grado,
     });
     $("#modificarExamen").modal("show");
   }
 
-  openModalInscribirAlumno(examen){
+  openModalInscribirAlumno(id_examen){
+    this.submitted = false;
     this.inscribirAlumnoForm.reset();
     this.inscribirAlumnoForm.setValue({
-      id_presentar: [''],
-      id_alumno: [''],
-      id_examen: [examen.id_examen],
+      id_presentar: '',
+      id_alumno: '',
+      id_examen: id_examen,
     });
     $("#inscribirAlumno").modal("show");
     $("#verExamenModal").modal("hide");
