@@ -139,6 +139,8 @@
                     <p>Fecha de fin/clausura del evento:&nbsp;</p>
                     <p>Costo por entrada:&nbsp;${{ eventoDetalles.costo }}</p>
                     <p>Descripción:&nbsp;{{ eventoDetalles.descripcion }}</p>
+                    <button (click)="openModalAgregarTipo(eventoDetalles.id_evento)">Agregar Tipo de Evento</button>
+                    <br><br>
                     <button (click)="openModalInscribirAlumno(eventoDetalles.id_evento)">Inscribir Alumno</button>
                     <br><br>
                     <div class="caja-flex-horizontal">
@@ -260,6 +262,40 @@
                         <input type="number" min="0" formControlName="id_alumno" class="form-control" [ngClass]="{ 'is-invalid': submitted && fee.id_alumno.errors }" />
                         <div *ngIf="submitted && fee.id_alumno.errors" class="invalid-feedback">
                         <div *ngIf="fee.id_alumno.errors.required">El ID del alumno es obligatrio</div>
+                        </div>
+                    </div>
+
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="agregarTipoEvento">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title">Agregar Tipo de Evento</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <form [formGroup]="agregarTipoEventoForm" (ngSubmit)="createTener()">
+                    
+                    <div class="form-group">
+                        <label for="id_tipo">ID del Tipo de Evento<span class="text-danger">*</span></label>
+                        <input type="number" min="0" formControlName="id_tipo" class="form-control" [ngClass]="{ 'is-invalid': submitted && fee.id_tipo.errors }" />
+                        <div *ngIf="submitted && fee.id_tipo.errors" class="invalid-feedback">
+                        <div *ngIf="fee.id_tipo.errors.required">El ID del tipo de evento es obligatrio</div>
                         </div>
                     </div>
 
