@@ -140,6 +140,9 @@
                     <p>Fecha de fin/clausura del evento:&nbsp;</p>
                     <p>Costo por entrada:&nbsp;${{ eventoDetalles.costo }}</p>
                     <p>Descripción:&nbsp;{{ eventoDetalles.descripcion }}</p>
+                    <span>Tipos del evento:&nbsp;</span>
+                    <span *ngFor="let tipo of tipos">{{ tipo.nombre }}, &nbsp;</span>
+                    <br><br>
                     <button (click)="openModalAgregarTipo(eventoDetalles.id_evento)">Agregar Tipo de Evento</button>
                     <br><br>
                     <button (click)="openModalInscribirAlumno(eventoDetalles.id_evento)">Inscribir Alumno</button>

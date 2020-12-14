@@ -9,6 +9,7 @@ import { ParticipaService } from '../../_services/participa.service';
 import { TenerService } from '../../_services/tener.service';
 
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Tipo_Evento } from 'src/app/_models/tipo_evento';
 
 declare var $: any;
 
@@ -28,6 +29,7 @@ export class EventoComponent implements OnInit {
   agregarTipoEventoForm: FormGroup;
   submitted = false;
   alumnos: Alumno[] | any;
+  tipos: Tipo_Evento[] | any;
 
   constructor(private eventoService:EventoService, private participaService:ParticipaService, private tenerService:TenerService, private formBuilder:FormBuilder) { }
 
@@ -228,6 +230,13 @@ export class EventoComponent implements OnInit {
     this.participaService.getAlumnosParticipando(evento.id_evento).subscribe(
       res => {
         this.alumnos = res;
+      },
+      err => console.error(err)
+    )
+    this.tipos = null;
+    this.tenerService.getTiposDelEvento(evento.id_evento).subscribe(
+      res => {
+        this.tipos = res;
       },
       err => console.error(err)
     )
