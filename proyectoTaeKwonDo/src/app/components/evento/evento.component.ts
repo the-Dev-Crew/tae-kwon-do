@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Evento } from '../../_models/evento';
+import { Alumno } from '../../_models/alumno';
 import { Tener } from '../../_models/tener';
 import { Participa } from '../../_models/participa';
 import { EventoService } from '../../_services/evento.service';
@@ -26,6 +27,7 @@ export class EventoComponent implements OnInit {
   inscribirAlumnoForm: FormGroup;
   agregarTipoEventoForm: FormGroup;
   submitted = false;
+  alumnos: Alumno[] | any;
 
   constructor(private eventoService:EventoService, private participaService:ParticipaService, private tenerService:TenerService, private formBuilder:FormBuilder) { }
 
@@ -184,6 +186,7 @@ export class EventoComponent implements OnInit {
     }
 
     let aux: Tener = this.agregarTipoEventoForm.value;
+
     console.log('id_tener: '+aux.id_tener);
     console.log('id_evento: '+aux.id_evento);
     console.log('id_tipo: '+aux.id_tipo);
@@ -197,9 +200,19 @@ export class EventoComponent implements OnInit {
     )
   }
 
+  delete(evento, alumno){
+    this.participaService.deleteParticipa(alumno.id_Alumno, evento.id_evento).subscribe(
+      res => {
+        this.openModalVerEvento(evento);
+      },
+      err => console.error(err)
+    )
+  }
+
   get f() { return this.eventoForm.controls;}
   get fe(){ return this.editarEventoForm.controls;}
   get fee() {return this.inscribirAlumnoForm.controls;}
+  get feee() {return this.agregarTipoEventoForm.controls;}
 
   //Modal para crear evento.
   openModalEvento(){
@@ -212,6 +225,14 @@ export class EventoComponent implements OnInit {
   openModalVerEvento(evento){
     this.submitted = false;
     this.eventoDetalles = evento;
+    this.alumnos = null;
+    this.participaService.getAlumnosParticipando(evento.id_evento).subscribe(
+      res => {
+        this.alumnos = res;
+      },
+      err => console.error(err)
+    )
+
     $("#verEventoModal").modal("show");
   }
 
@@ -252,5 +273,6 @@ export class EventoComponent implements OnInit {
       id_tipo: '',
     });
     $("#agregarTipoEvento").modal("show");
+    $("#verEventoModal").modal("hide");
   }
 }
